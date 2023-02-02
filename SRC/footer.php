@@ -1,5 +1,7 @@
 <!-- footer to be used on all customer pages -->
 <!-- make sure w3 school style sheet is imported -->
+<!--  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  make sure this is in head -->
+<!-- use </?php include 'footer.php'; ?> delete the / in thier, then itll put this this code in the footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-light-grey w3-xlarge">
   <p>Follow us on social media</p>
   <i class="fa fa-facebook-official w3-hover-opacity"></i>
