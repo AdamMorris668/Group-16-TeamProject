@@ -23,7 +23,7 @@
 
 <header>
   <!-- Navbar class used to locat the navbar in the landing page, needs adding when header is ready -->
-  
+  <?php include 'header.php'; ?>
 </header>
 
 <body>
