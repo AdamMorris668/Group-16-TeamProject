@@ -17,6 +17,7 @@
 </head>
   <body>
     <!-- header goes here when header is ready -->
+    <?php include 'header.php'; ?>
     <div class="text-center">
       <br>
       
