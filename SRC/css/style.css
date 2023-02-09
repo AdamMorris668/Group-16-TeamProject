@@ -1,1 +1,24 @@
 
+.review1,
+.review2,
+.review3 {
+    text-align: center;
+    border-radius: 25px;
+    border: 1px solid;
+    padding: 10px;
+}
+.test,
+.maps{
+    padding: 50px 50px 50px 50px;
+    text-align: center;
+    font-size: larger;
+}
+   
+.reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3em;
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 50px 30px 30px;
+}
