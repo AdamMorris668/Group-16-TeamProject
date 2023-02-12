@@ -40,3 +40,30 @@ INSERT INTO `products` (`id`, `product`, `product_description`, `size`, `price`,
 (E3, 'Bar speaker  ', 'Black, Metallic framed bar speaker.', 1, '80.00', '../Images/product-img/E3.jpg'),
 (E4, 'Portable Mini Ball Bluetooth Speaker ', 'White, Fabricated body, rechargeable, portable Mini Bluetooth speaker.', 50, '70.00', '../Images/product-img/E4.jpg'),
 (E5, 'Wired PC speakers ', 'Black, matte wired PC/desktop speakers.', 250, '40.00', '../Images/product-img/E5.jpg'),
+
+
+--
+-- Table structure for table `admin_login`
+--
+
+CREATE TABLE `admin_login` (
+  `id` int(11) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_login`
+--
+
+INSERT INTO `admin_login` (`id`, `email`, `username`, `password`) VALUES
+(1, 'adammorris', '210101298@aston.ac.uk', '1122'),
+(2, 'hamasmahroof', '200151713@aston.ac.uk', '2211'),
+(3, 'hussainahmed', '210152094@aston.ac.uk', '4433'),
+(4, 'jawrajsingh', '210160435@aston.ac.uk', '3535'),
+(5, 'ibrahimriasat', '210136485@aston.ac.uk', '2525'),
+(6, 'rayanabdulsmad', '210060906@aston.ac.uk', '2020'),
+(7, 'alialomairi', '200239516@aston.ac.uk', '2626'),
+(8, 'hansraj', '220254236@aston.ac.uk', '4747');
+(9, 'kieranfranklinbaily', '210147713@aston.ac.uk', '2002');
