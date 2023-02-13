@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout Page</title>
+  <style>
+    /* Add your CSS styles here */
+    * {
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    .container {
+      padding: 0 10vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #dddddd;
+      padding: 20px;
+      text-align: left;
+    }
+
+    th {
+      font-size: 18px;
+    }
+
+    td {
+      font-size: 16px;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    .btn {
+        background-color: rgb(66, 66, 66);  
+        color: white;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    #image{
+        height: 120px;
+        border-radius: 5px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+    #size{
+        padding: 10px;
+        border: 1px solid #eee;
+    }
+    
+    #remove{
+        display: flex;
+        border: 1px solid #eee;
+        height: 40px;
+        width: 40px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+        text-decoration: none;
+        color: #000000;
+    }
+    #remove:hover{
+        border-radius: 50%;
+        border: transparent;
+        background-color: red;
+        color: white;        
+        transform: rotate(180deg);
+        transition: all .4s;
+    }
+    .quantity {
+    position: relative;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button
+    {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    input[type=number]
+    {
+    -moz-appearance: textfield;
+    }
+
+    .quantity input {
+    width: 60px;
+    height: 40px;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0;
+    padding-left: 15px;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    }
+
+    .quantity input:focus {
+    outline: 0;
+    }
+
+    .quantity-nav {
+    float: left;
+    position: relative;
+    height: 38px;
+    border-radius: 2px;
+    }
+
+    .quantity-button {
+    position: relative;
+    cursor: pointer;
+    border-left: 1px solid #eee;
+    width: 20px;
+    text-align: center;
+    color: #000000;
+    background-color: rgb(187, 187, 187);
+    font-size: 13px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    line-height: 1.5;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    }
+    .quantity-button:hover{
+        background-color: rgb(66, 66, 66);
+        color:white;
+        border-radius: 5px;
+    }
+
+    .quantity-button.quantity-up {
+    position: absolute;
+    height: 50%;
+    top: 0;
+    border-bottom: 1px solid #eee;
+    }
+
+    .quantity-button.quantity-down {
+    position: absolute;
+    bottom: -1px;
+    height: 50%;
+    }
+
+    #tags_area{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .tag{       
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        height: 70px;
+        width: 150px;
+        margin: 5vh 0;
+    }
+    #discount_code{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        border-radius: 3px;
+        height: 70px;
+        width: 400px;
+        margin: 5vh 0;
+        
+    }
+    #discount_code input{
+        padding: 10px;
+        
+    }
+    #discount_code button{
+        padding: 10px;
+        color: white;
+        border-color: transparent;
+        background-color: black;
+        border-radius: 2px;
+    }
+    #discount_code button:hover{        
+        background-color: rgb(66, 66, 66);        
+    }
+    #area_buttons{
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        gap: 20px;
+    }
+    .checkout{
+        background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Checkout Page</h1>
+    <table>
+      <tr>
+        <th style="width:150px"></th>
+        <th>Description</th>
+        <th>Size</th>
+        <th>Quantity</th>
+        <th>Remove</th>
+        <th style="width:50px">Price</th>
+      </tr>
+
+      <tr>
+        <td>
+            <img id="image" src="./img/test_img.jpg" alt="">
+        </td>
+        <td style="line-height: .2;">
+            <h3>Product</h2>
+            <h4>proct code:</h3>
+        </td>
+        <td>
+            <select name="size" id="size">
+                <option id="n1" value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+
+            </select>
+        </td>
+        <td>
+            <div class="quantity">
+                <input type="number" min="1" max="9" step="1" value="1">
+            </div>
+        </td>
+        <td> 
+            <a href="" id="remove">
+                <svg fill="currentcolor" xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
+                </svg>
+            </a>
+        </td>
+        <td style="text-align: end;">
+            <h3>£30</h3>
+        </td>
+      </tr>
+    </table>
+    <div id="tags_area">
+        <div id="discount_code">
+            <input type="text" value="" placeholder="Enter promo code">
+            <button type="submit">Apply Discount</button>
+        </div>
+        <div class="tag">
+            <h5>Discount</h5>
+            <h3>£0</h3>
+        </div>
+        <div class="tag">
+            <h5>Delivery</h5>
+            <h3>£10</h3>
+        </div>
+        <div class="tag">
+            <h5>Subtotal</h5>
+            <h3>£40</h3>
+        </div>
+        <div class="tag">
+            <h5>Total</h5>
+            <h3>£40</h3>
+        </div>
+    </div>
+    <div id="area_buttons">       
+        <button class="btn">Update Quantity</button>
+        <button class="btn">Continue Shopping</button>
+        <button class="btn checkout">Checkout</button>
+    </div>
+  </div>
+  <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+  <script>
+    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+    jQuery('.quantity').each(function() {
+      var spinner = jQuery(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+      btnUp.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue >= max) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue + 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+      btnDown.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue <= min) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue - 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+    });
+</script>
+</body>
+</html>
