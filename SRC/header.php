@@ -11,7 +11,7 @@
       <ul class="nav navbar-nav">
         <!-- highlights relevant site -->
         <li <?= $_GET['page'] == 'home' ? ' class="active"' : ''; ?>><a href="index.php?page=home"><i class="fa fa-fw fa-home"></i> Home</a></li>
-        <li <?= $_GET['page'] == 'product' ? ' class="active"' : ''; ?>><a href="products.php?page=product">Products</a></li>
+        <li <?= $_GET['page'] == 'product' ? ' class="active"' : ''; ?>><a href="product.php?page=product">Products</a></li>
         <li <?= $_GET['page'] == 'account' ? ' class="active"' : ''; ?>><a href="login.php?page=account">My Account</a></li>
         <li <?= $_GET['page'] == 'contact' ? ' class="active"' : ''; ?>><a href="contactUs.php?page=contact">Contact Us</a></li>
         <li <?= $_GET['page'] == 'about' ? ' class="active"' : ''; ?>><a href="aboutUs.php?page=about">About Us</a></li>
