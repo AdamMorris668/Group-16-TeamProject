@@ -2,7 +2,7 @@
 $db_host = "localhost";
 $db_user = "root";
 $db_pass = "";
-$db_db = "techtopia_db";
+$db_db = "techtopiadatabase";
 
 function getDb()
 {
