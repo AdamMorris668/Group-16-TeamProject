@@ -1,3 +1,10 @@
+<?php 
+require "config.php";
+if(isset($_SESSION["user_id"])) {
+  header("Location:index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +15,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <section id="header">
+          <?php 
+            if(isset($_SESSION["user_id"])) {
+                $id = $_SESSION["user_id"];
+                //$name = $_SESSION["user_firstname"];
+                $sql = "SELECT user_firstname FROM user WHERE user_id = '$id'";
+                $result = mysqli_query($conn,$sql);
+                $row = mysqli_fetch_assoc($result);
+                $name = $row['user_firstname'];
+               
+                
+            
+                echo "<li><a href=''>Account</a></li>";
+                echo "<li><a href=\"#\">$name</a></li>";
+            echo "<li><a href=\"#\">Logout</a></li>";
+            } else {
+            echo "<li><a href=\"#\">Sign Up/In</a></li>";
+            }
+          ?>
 </section>
       
 <body>
