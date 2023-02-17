@@ -59,7 +59,7 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `product` varchar(30) NOT NULL,
   `product_description` varchar(200) NOT NULL,
-  `size` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `type` varchar(100) NOT NULL,
   `images` varchar(255) NOT NULL
@@ -69,7 +69,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `product`, `product_description`, `size`, `price`, `type`, `images`) VALUES
+INSERT INTO `products` (`id`, `product`, `product_description`, `quantity`, `price`, `type`, `images`) VALUES
 (1, 'LCD Monitor', '24” Black LCD Monitor with silver base.', 200, '80.00', 'monitor', '../Images/product-img/A1.jpg'),
 (2, 'LED Monitor', '30” Full Black LED Display Monitor.', 250, '100.00', 'monitor', '../Images/product-img/A2.jpg'),
 (3, 'Curved Monitor', '32” Full Black, Curved Ultrawide Display Monitor.', 1, '150.00', 'monitor', '../Images/product-img/A3.jpg'),
