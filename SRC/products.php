@@ -1,3 +1,21 @@
+<?php 
+include "connect_db.php";
+
+$conn = getDb();
+
+$products = "";
+if (isset($_GET['product'])) {
+  $products = $_GET['product'];
+}
+
+function getProduct($conn, $type)
+{
+  $stat = $conn->prepare("SELECT id, product, price, images, `type` FROM products WHERE type=:type");
+  $stat->execute(['type' => $type]);
+  return $stat->fetchAll(PDO::FETCH_ASSOC);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +37,8 @@
     <!-- header goes here when header is ready -->
     <?php include 'header.php'; ?>
 
-    <div class="wrapper">
+    <?php if (!isset($_GET['product'])) { ?>
+      <div class="wrapper">
       <div class="grid-image">
 
         <div class="keyboard">
@@ -51,10 +70,26 @@
             <h3>Cameras</h3>
           </a>
         </div>
-
       </div>
     </div>
+  <?php } ?>
 
+    <?php if ($products == "keyboard") {
+    $result = getProduct($conn, "keyboard");
+
+    echo "<div class=\"gallery\">";
+
+    foreach($result as $row) {
+      echo "<a href=\"product-details.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . "\"></a>";
+      echo "<a href=\"product-details.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
+      echo "<a href=\"product-details.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
+      echo "<h6>£" . $row["price"] . "</h6>";
+    }
+    echo "</div>";
+  } ?>
+
+    
+  
     <?php include 'footer.php'; ?>
     
   </body>
