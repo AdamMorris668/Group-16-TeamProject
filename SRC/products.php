@@ -74,16 +74,102 @@ function getProduct($conn, $type)
     </div>
   <?php } ?>
 
+  <!-- Keyboard displayed -->
+
     <?php if ($products == "keyboard") {
     $result = getProduct($conn, "keyboard");
 
     echo "<div class=\"gallery\">";
 
     foreach($result as $row) {
-      echo "<a href=\"product-details.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . "\"></a>";
-      echo "<a href=\"product-details.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
-      echo "<a href=\"product-details.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
+      echo "<div class=\"content\">";
+      echo "<div class=\"zoom\">";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
+      echo "</div>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
       echo "<h6>£" . $row["price"] . "</h6>";
+      echo "</div>";
+    }
+    echo "</div>";
+  } ?>
+
+  <!-- Mouse displayed -->
+
+<?php if ($products == "mouse") {
+    $result = getProduct($conn, "mouse");
+
+    echo "<div class=\"gallery\">";
+
+    foreach($result as $row) {
+      echo "<div class=\"content\">";
+      echo "<div class=\"zoom\">";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
+      echo "</div>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
+      echo "<h6>£" . $row["price"] . "</h6>";
+      echo "</div>";
+    }
+    echo "</div>";
+  } ?>
+
+<!-- Monitors displayed -->
+
+<?php if ($products == "monitor") {
+    $result = getProduct($conn, "monitor");
+
+    echo "<div class=\"gallery\">";
+
+    foreach($result as $row) {
+      echo "<div class=\"content\">";
+      echo "<div class=\"zoom\">";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
+      echo "</div>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
+      echo "<h6>£" . $row["price"] . "</h6>";
+      echo "</div>";
+    }
+    echo "</div>";
+  } ?>
+
+<!-- Cameras displayed -->
+
+<?php if ($products == "camera") {
+    $result = getProduct($conn, "camera");
+
+    echo "<div class=\"gallery\">";
+
+    foreach($result as $row) {
+      echo "<div class=\"content\">";
+      echo "<div class=\"zoom\">";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
+      echo "</div>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
+      echo "<h6>£" . $row["price"] . "</h6>";
+      echo "</div>";
+    }
+    echo "</div>";
+  } ?>
+
+<!-- Speakers displayed -->
+
+<?php if ($products == "speaker") {
+    $result = getProduct($conn, "speaker");
+
+    echo "<div class=\"gallery\">";
+
+    foreach($result as $row) {
+      echo "<div class=\"content\">";
+      echo "<div class=\"zoom\">";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
+      echo "</div>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
+      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
+      echo "<h6>£" . $row["price"] . "</h6>";
+      echo "</div>";
     }
     echo "</div>";
   } ?>
