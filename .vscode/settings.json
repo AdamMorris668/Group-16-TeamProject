@@ -25,5 +25,6 @@
             "username": "hansraj",
             "password": "team16"
         }
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }
