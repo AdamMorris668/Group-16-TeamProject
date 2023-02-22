@@ -1,4 +1,10 @@
+/* Header, Navigation Bar */
+.navbar-nav .nav-item{
+  padding: 5px;
+  font-family: Tahoma, Geneva, sans-serif;
+}
 
+/*About Us page*/
 .review1,
 .review2,
 .review3 {

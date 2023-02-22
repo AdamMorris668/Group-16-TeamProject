@@ -1,22 +1,22 @@
+
 <header>
   <!-- Navbar class used to locat the navbar in the landing page -->
-  <nav class="navbar navbar-default">
-    <a class="navbar-brand" href="index.php"></a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <!-- once logo is done properly into the images folder <a href="index.php"><img src="Images/Logo.png" alt="logo" style="width: 80px;"></a> -->
-
-        <!-- Constractor of the lnding page and other pages linked -->
+      <a class="navbar-brand" href="index.php">Logo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'home' ? ' active' : '' ?>"><a class="nav-link" href="index.php?page=home"><i class="fa fa-fw fa-home"></i>Home</a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'product' ? ' active' : '' ?>"><a class="nav-link" href="products.php?page=product">Products</a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'account' ? ' active' : '' ?>"><a class="nav-link" href="login.php?page=account">My Account</a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'contact' ? ' active' : '' ?>"><a class="nav-link" href="contactUs.php?page=contact">Contact Us</a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'about' ? ' active' : '' ?>"><a class="nav-link" href="aboutUs.php?page=about">About Us</a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'cart' ? ' active' : '' ?>"><a class="nav-link" href="cart.php?page=cart">Checkout</a></li>
+        </ul>
       </div>
-      <ul class="nav navbar-nav">
-        <!-- highlights relevant site -->
-        <li <?= $_GET['page'] == 'home' ? ' class="active"' : ''; ?>><a href="index.php?page=home"><i class="fa fa-fw fa-home"></i> Home</a></li>
-        <li <?= $_GET['page'] == 'product' ? ' class="active"' : ''; ?>><a href="products.php?page=product">Products</a></li>
-        <li <?= $_GET['page'] == 'account' ? ' class="active"' : ''; ?>><a href="login.php?page=account">My Account</a></li>
-        <li <?= $_GET['page'] == 'contact' ? ' class="active"' : ''; ?>><a href="contactUs.php?page=contact">Contact Us</a></li>
-        <li <?= $_GET['page'] == 'about' ? ' class="active"' : ''; ?>><a href="aboutUs.php?page=about">About Us</a></li>
-        <li <?= $_GET['page'] == 'cart' ? ' class="active"' : ''; ?>><a href="cart.php?page=cart">Checkout</a></li>
-      </ul>
       <!-- form used to enter search queries -->
       <!--
       <form class="navbar-form navbar-right" action="/productSearch.php">
