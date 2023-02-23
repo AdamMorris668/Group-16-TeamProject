@@ -1,0 +1,20 @@
+/* Style for the shopping cart title */
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  /* Style for the shopping cart items */
+  p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  /* Style for the shopping cart total price */
+  p:last-of-type {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
