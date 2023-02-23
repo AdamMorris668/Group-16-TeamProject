@@ -151,3 +151,26 @@
     grid-row: 4 / 8;
   }
 }
+
+/* Products page cards */
+
+.card-body{
+  background-color: lightgray;
+}
+
+.card-link.no-underline{
+  text-decoration: none;
+}
+
+.card-img-top{
+  width: 300px; 
+  height: 200px;
+}
+
+.col a{
+  text-decoration: none;
+}
+
+.col a:hover{
+  color: inherit;
+}

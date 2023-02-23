@@ -78,102 +78,145 @@ function getProduct($conn, $type)
   <!-- Keyboard displayed -->
 
   <?php if ($products == "keyboard") {
-    $result = getProduct($conn, "keyboard");
+    $result = getProduct($conn, "keyboard"); ?>
 
-    echo "<div class=\"gallery\">";
-
-    foreach($result as $row) {
-      echo "<div class=\"content\">";
-      echo "<div class=\"zoom\">";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
-      echo "</div>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
-      echo "<h6>£" . $row["price"] . "</h6>";
-      echo "</div>";
-    }
-    echo "</div>";
-  } ?>
+  <br>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <?php foreach($result as $row) { ?>
+        <div class="col">
+          <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
+            <div class="card rounded">
+              <div class="zoom">
+                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
+                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+  <br>
+  <?php } ?>
 
   <!-- Mouse displayed -->
 
   <?php if ($products == "mouse") {
-    $result = getProduct($conn, "mouse");
+    $result = getProduct($conn, "mouse"); ?>
 
-    echo "<div class=\"gallery\">";
-
-    foreach($result as $row) {
-      echo "<div class=\"content\">";
-      echo "<div class=\"zoom\">";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
-      echo "</div>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
-      echo "<h6>£" . $row["price"] . "</h6>";
-      echo "</div>";
-    }
-    echo "</div>";
-  } ?>
+  <br>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <?php foreach($result as $row) { ?>
+        <div class="col">
+          <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
+            <div class="card rounded">
+              <div class="zoom">
+                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
+                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+  <br>
+  <?php } ?>
 
 <!-- Monitors displayed -->
 
   <?php if ($products == "monitor") {
-    $result = getProduct($conn, "monitor");
+    $result = getProduct($conn, "monitor"); ?>
 
-    echo "<div class=\"gallery\">";
-
-    foreach($result as $row) {
-      echo "<div class=\"content\">";
-      echo "<div class=\"zoom\">";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
-      echo "</div>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
-      echo "<h6>£" . $row["price"] . "</h6>";
-      echo "</div>";
-    }
-    echo "</div>";
-  } ?>
+  <br>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <?php foreach($result as $row) { ?>
+        <div class="col">
+          <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
+            <div class="card rounded">
+              <div class="zoom">
+                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
+                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+  <br>
+  <?php } ?>
 
 <!-- Cameras displayed -->
 
   <?php if ($products == "camera") {
-    $result = getProduct($conn, "camera");
+    $result = getProduct($conn, "camera"); ?>
 
-    echo "<div class=\"gallery\">";
+  <br>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <?php foreach($result as $row) { ?>
+        <div class="col">
+          <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
+            <div class="card rounded">
+              <div class="zoom">
+                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
+                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+  <br>
+  <?php } ?>
 
-    foreach($result as $row) {
-      echo "<div class=\"content\">";
-      echo "<div class=\"zoom\">";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
-      echo "</div>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
-      echo "<h6>£" . $row["price"] . "</h6>";
-      echo "</div>";
-    }
-    echo "</div>";
-  } ?>
+
 
 <!-- Speakers displayed -->
 
   <?php if ($products == "speaker") {
-    $result = getProduct($conn, "speaker");
+    $result = getProduct($conn, "speaker"); ?>
 
-    echo "<div class=\"gallery\">";
-
-    foreach($result as $row) {
-      echo "<div class=\"content\">";
-      echo "<div class=\"zoom\">";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><img src=\"" . $row["images"] . "\" alt=\"" . $row["product"] . "\"></a>";
-      echo "</div>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><h3>" . $row["product"] . "</h3></a>";
-      echo "<a href=\"view_product.php?id=" . $row["id"] . "\"><p>" . $row["type"] . "</p></a>";
-      echo "<h6>£" . $row["price"] . "</h6>";
-      echo "</div>";
-    }
-    echo "</div>";
-  } ?>
+  <br>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <?php foreach($result as $row) { ?>
+        <div class="col">
+          <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
+            <div class="card rounded">
+              <div class="zoom">
+                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
+                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php } ?>
+    </div>
+  </div>
+  <br>
+  <?php } ?>
+  
   
     <?php include 'footer.php'; ?>
     
