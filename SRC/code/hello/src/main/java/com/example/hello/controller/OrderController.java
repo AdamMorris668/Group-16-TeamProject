@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class StockController {
+public class OrderController {
 
-    @GetMapping("/stock")
+    @GetMapping("/orders")
     public String greeting(Model model) {
-        return "stock";
+        return "orders";
     }
 
 }
