@@ -2,19 +2,25 @@
 <html>
 <head>
     <title>Login Form</title>
-    <script>
-        function validateForm() {
-            var user = document.getElementById("txtUser").value;
-            var pass = document.getElementById("txtPass").value;
-
-            if (user === "username" && pass === "password") {
-                document.getElementById("lblDisplay").innerHTML = "Credentials Accepted.";
-                window.location.href = "admin.html";
-            } else {
-                document.getElementById("lblDisplay").innerHTML = "Please try again.";
-            }
+<script>
+    String pass;
+    String user;
+    user = txtUser.getText();
+    pass = txtPass.getText();
+    
+    if(pass.equals("password") && user.equals("username") ){
+        lblDisplay.setText("Credentials Accepted.");
+        try {
+            URI uri = new URI("admin.html");
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    </script>
+    }
+    else{
+        lblDisplay.setText("Please try again.");
+    }
+</script>
 </head>
 <body>
     <h2>Admin Login</h2>
