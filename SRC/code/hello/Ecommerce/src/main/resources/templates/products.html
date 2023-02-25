@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Products</title>
+</head>
+<style>
+html {
+  height: 100%;
+}
+body{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.navbar{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#3c5481, silver);
+}
+
+nav .navbar-nav li a{
+  color: white !important;;
+  }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt="" style="min-width: 100px; min-height: 80px;"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/admin/home/0}" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/adminShop}" href="#">Shop</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/orders}" href="#">Orders</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/logout}" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron text-center" style="background-color: silver">
+    <h1 class="display-8">Techtopia</h1>
+    <h3>Welcome to the Techtopia admin page</h3 >Here our admins are able
+        look at and change data on our products database or be able to
+        see stock levels and know when to order new stock.
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h4 style="color:white">Categories</h4>
+            <ul class="list-group">
+                <a style="color:#007bff" th:href="@{/}"><li class="list-group-item">ALL PRODUCTS</li></a>
+                <a  style="color:#007bff" href=""  th:each="category, iStat : ${categories}" th:href="@{/admin/home/{id}(id=${category.key})}">
+                    <li class="list-group-item" th:text="${category.value}"></li>
+                </a>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+    <a th:href="@{/admin/products/add}" style="margin: 20px 0" class="btn btn-primary">Add Product</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">SN</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+            <th scope="col">Preview</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product, iStat : ${products}">
+            <th style="color:white" scope="row" th:text="${iStat.index + 1}">1</th>
+            <td style="color:white" th:text="${product.name}">Name</td>
+            <td>
+                <span style="color:red" th:if="${product.quantity == 0}">Out Of Stock</span>
+                <span style="color:#008000"  th:if="${product.quantity >=5}">In Stock</span>
+                <span style="color:#007bff" th:if="${product.quantity < 5} AND ${product.quantity > 0}">Low Stock</span>
+            </td>
+            <td style="color:white" th:text="${product.quantity}">Quantity</td>
+            <td style="color:white" th:text="${product.price}">Price</td>
+            <td style="color:white" th:text="${product.category}">Category</td>
+            <td><img src="" height="100px" width="100px"  th:src="@{${'/productImages/' + product.imageName}}"></td>
+            <td><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}" class="btn btn-warning">Update</a></td>
+        </tr>
+        </tbody>
+    </table>
+   </div>
+   </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

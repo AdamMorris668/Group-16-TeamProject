@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+    <title>Orders</title>
+</head>
+<style>
+
+
+html {
+  height: 100%;
+}
+body{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.navbar{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#3c5481, silver);
+}
+
+nav .navbar-nav li a{
+  color: white !important;;
+  }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt="" style="min-width: 100px; min-height: 80px;"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/admin/home/0}" href="#">Home</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/adminShop}" href="#">Shop</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/adminLogin}" href="#">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/orders}" href="#">Orders</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="text-center">
+    <h1 style="color:white" class="display-8">Manage Orders</h1>
+</div>
+<div class="container-fluid">
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Order Id</th>
+            <th scope="col">Created date</th>
+            <th scope="col">Delivery Status</th>
+            <th scope="col">Total Amount</th>
+            <th scope="col">Action</th>
+            <th scope="col">View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order, iStat : ${orders}">
+            <td style="color:white" th:text="${order.id}">Order Id</td>
+            <td style="color:white" th:text="${order.orderCreated}">Created Date</td>
+            <td>
+                <span style="color:#008000" th:if="${order.deliveryStatus}">Delivered</span>
+                <span style="color:red"  th:if="${!order.deliveryStatus}">Pending</span>
+            </td>
+            <td style="color:white" th:text="${order.totalAmount}">Total Amount</td>
+            <td>
+                <span th:if="${!order.deliveryStatus}"><a href="" th:href="@{/markorder/{id}(id=${order.id})}" class="btn btn-warning">Mark Delivered</a></span>
+                <span th:if="${order.deliveryStatus}"><a href="" th:href="@{/markorder/{id}(id=${order.id})}" class="btn btn-success">Mark Pending</a></span>
+                <span><a href="" th:href="@{/order/delete/{id}(id=${order.id})}" class="btn btn-primary">Delete</a></span>
+            </td>
+            <td><a href="" th:href="@{/vieworder/{id}(id=${order.id})}" class="btn btn-danger">View</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
