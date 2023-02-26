@@ -1,3 +1,15 @@
+<?php
+include "connect_db.php";
+
+$conn = getDatabase();
+$stat = $conn->prepare("SELECT id, product, product_description, price, images, `type` FROM products WHERE id=?");
+$stat->bindParam(1, $_GET["id"], PDO::PARAM_INT);
+$stat->execute();
+$result = $stat->setFetchMode(PDO::FETCH_ASSOC);
+$result = $stat->fetchAll();
+$product = $result[0];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,18 +37,18 @@
           <button class="btn btn-primary mt-4 mb-3" onclick="window.history.back()">Back</button>
         </div>
       </div>
-      <h1 class="text-center">Product View</h1>
+      <h1 class="text-center txt"><?php echo $product['type']; ?></h1>
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <img class="img-fluid img" src="images/monitors/A1.jpg" alt="Product Image">
+          <img class="img-fluid img" src="<?php echo $product['images']; ?>" alt="Product-Image">
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column">
-          <h2 class="product-name mt-5">Product Name</h2>
-          <p class="product-price">$19.99</p>
-          <p class="product-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          <h2 class="product-name mt-5"><?php echo $product['product']; ?></h2>
+          <p class="product-price">£<?php echo $product['price']; ?></p>
+          <p class="product-description"><?php echo $product['product_description']; ?></p>
           <div class="mt-auto">
-            <button class="btn btn-success add-to-basket">Add to Basket</button>
-            <button class="btn btn-success add-to-wishlist">Add to Wishlist</button>
+            <button class="btn btn-info add-to-basket">Add to Basket</button>
+            <button class="btn btn-info add-to-wishlist">Add to Wishlist</button>
           </div>
         </div>
       </div>
