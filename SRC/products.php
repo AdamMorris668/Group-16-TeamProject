@@ -1,7 +1,7 @@
 <?php 
 include "connect_db.php";
 
-$conn = getDb();
+$conn = getDatabase();
 
 $products = "";
 if (isset($_GET['product'])) {

@@ -4,7 +4,7 @@
   font-family: Tahoma, Geneva, sans-serif;
 }
 
-/*About Us page*/
+/* About Us page */
 .review1,
 .review2,
 .review3 {
@@ -173,4 +173,67 @@
 
 .col a:hover{
   color: inherit;
+}
+
+/* Product view page */
+
+.txt{
+  text-transform: capitalize;
+}
+.img{
+  width: 600px;
+  height: 600px;
+}
+
+.product-name {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.product-price {
+	font-size: 20px;
+	color: green;
+	margin-bottom: 10px;
+}
+
+.product-description {
+	margin-bottom: 20px;
+}
+
+.product-add-buttons{
+  margin-top: 40px;
+}
+
+.add-to-basket {
+	margin-right: 10px;
+}
+
+.add-to-basket:hover, .add-to-wishlist:hover {
+	color: white;
+}
+
+.mt-auto{
+  margin-bottom: 100px;
+}
+
+@media (max-width: 768px) {
+	.product-name {
+		font-size: 20px;
+	}
+
+	.product-price {
+		font-size: 16px;
+	}
+
+	.product-description {
+		font-size: 14px;
+	}
+
+	.add-to-basket, .add-to-wishlist {
+		font-size: 14px;
+		padding: 5px 10px;
+		margin-bottom: 10px;
+	}
 }
