@@ -35,6 +35,26 @@ body{
 nav .navbar-nav li a{
   color: white !important;;
   }
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
+.Zoom {
+  width: 500px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.Product_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.5s ease-out;
+}
+/* -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -78,10 +98,11 @@ nav .navbar-nav li a{
 </nav>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-sm-5 d-flex justify-content-center">
-            <img class="mt-5" height="300px" width="300px" src="" th:src="@{${'/productImages/' + product.imageName}}"
-                 alt="">
-        </div>
+        <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+        <div class="Zoom" data-scale="1.6">
+            <img th:src="@{${'/productImages/' + product.imageName}}"  src=""  class="dslc-lightbox-image Product_img" alt="" style="min-width: 100px; min-height: 80px;"/>
+          </div>
+        <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
         <div class="col-sm-7 mt-5">
             <h2 style="color:white" th:text="${product.name}"></h2>
             <p style="color:white" th:text="${product.category}"></p>
@@ -92,7 +113,8 @@ nav .navbar-nav li a{
             <span style="color:#007bff" th:if="${product.quantity < 5} AND ${product.quantity > 0}">Low Stock</span>
            </h5>
             <p style="color:white" th:text="${product.description}"></p>
-        </div>
+            <a th:href="@{/adminShop}" style="margin: 20px 0" class="btn btn-primary">Back</a>
+        </div> 
     </div>
 </div>
 
@@ -105,5 +127,32 @@ nav .navbar-nav li a{
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<script>
+$(".Zoom")
+  // tile mouse actions
+  .on("mouseover", function() {
+    $(this)
+      .children(".Product_img")
+      .css({ transform: "scale(" + $(this).attr("data-scale") + ")" });
+  })
+  .on("mouseout", function() {
+    $(this)
+      .children(".Product_img")
+      .css({ transform: "scale(1)" });
+  })
+  .on("mousemove", function(e) {
+    $(this)
+      .children(".Product_img")
+      .css({
+        "transform-origin":
+          ((e.pageX - $(this).offset().left) / $(this).width()) * 100 +
+          "% " +
+          ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +
+          "%"
+      });
+  });
+</script>
+<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 </body>
 </html>
