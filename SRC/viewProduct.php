@@ -60,6 +60,6 @@ $product = $result[0];
     <?php include 'footer.php'; ?>
 
     <!-- Zoom in JS script -->
-    <script src="main.js"></script>
+    <script src="javascript/main.js"></script>
   </body>
 </html>
