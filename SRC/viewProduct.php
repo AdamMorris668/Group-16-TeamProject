@@ -40,7 +40,9 @@ $product = $result[0];
       <h1 class="text-center txt"><?php echo $product['type']; ?></h1>
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div id="image-zoom">
           <img class="img-fluid img" src="<?php echo $product['images']; ?>" alt="Product-Image">
+          </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column">
           <h2 class="product-name mt-5"><?php echo $product['product']; ?></h2>
@@ -56,6 +58,8 @@ $product = $result[0];
 
     <br>
     <?php include 'footer.php'; ?>
-    
+
+    <!-- Zoom in JS script -->
+    <script src="main.js"></script>
   </body>
 </html>
