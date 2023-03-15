@@ -34,7 +34,7 @@ $product = $result[0];
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <button class="btn btn-primary mt-4 mb-3" onclick="window.history.back()">Back</button>
+          <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
         </div>
       </div>
       <h1 class="text-center txt"><?php echo $product['type']; ?></h1>
@@ -44,6 +44,9 @@ $product = $result[0];
           <img class="img-fluid img" src="<?php echo $product['images']; ?>" alt="Product-Image">
           </div>
         </div>
+
+        <!-- product information column -->
+        
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column">
           <h2 class="product-name mt-5"><?php echo $product['product']; ?></h2>
           <p class="product-price">£<?php echo $product['price']; ?></p>
@@ -55,11 +58,44 @@ $product = $result[0];
         </div>
       </div>
     </div>
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 d-flex flex-column">
+          <h3>Recommended Products</h3>
+          <div class="row">
+            <?php
+              $stat2 = $conn->prepare("SELECT id, product, product_description, price, images, `type` FROM products WHERE `type`<> ? ORDER BY RAND() LIMIT 4");
+              $stat2->bindParam(1, $product['type'], PDO::PARAM_STR);
+              $stat2->execute();
+              $results = $stat2->fetchAll();
+              foreach ($results as $row) { ?>
+                <div class=" col col-sm-6 col-md-4 col-lg-3 mb-3">
+                  <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
+                    <div class="card h-100 rounded">
+                      <div class="zoom">
+                        <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              <?php } ?>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <br>
     <?php include 'footer.php'; ?>
 
     <!-- Zoom in JS script -->
     <script src="javascript/main.js"></script>
+
+
   </body>
 </html>
+

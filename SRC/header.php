@@ -1,7 +1,7 @@
 
 <header>
   <!-- Navbar class used to locat the navbar in the landing page -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">Logo</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,10 +11,15 @@
         <ul class="navbar-nav">
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'home' ? ' active' : '' ?>"><a class="nav-link" href="index.php?page=home"><i class="fa fa-fw fa-home"></i>Home</a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'product' ? ' active' : '' ?>"><a class="nav-link" href="products.php?page=product">Products</a></li>
-          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'account' ? ' active' : '' ?>"><a class="nav-link" href="login.php?page=account">My Account</a></li>
+          
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'contact' ? ' active' : '' ?>"><a class="nav-link" href="contactUs.php?page=contact">Contact Us</a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'about' ? ' active' : '' ?>"><a class="nav-link" href="aboutUs.php?page=about">About Us</a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'cart' ? ' active' : '' ?>"><a class="nav-link" href="cart.php?page=cart">Checkout</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="basket.php?page=basket"><i class="fa fa-shopping-basket"></i></a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'wishlist' ? ' active' : '' ?>"><a class="nav-link" href="wishlist.php?page=wishlist"><i class="fa fa-heart"></i></a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'account' ? ' active' : '' ?>"><a class="nav-link" href="login.php?page=account"><i class="fa fa-regular fa-user-circle"></i> My Account</a></li>
         </ul>
       </div>
       <!-- form used to enter search queries -->
