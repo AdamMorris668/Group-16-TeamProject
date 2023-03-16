@@ -77,22 +77,32 @@ function getProduct($conn, $type)
 
   <!-- Keyboard displayed -->
 
-  <?php if ($products == "keyboard") {
-    $result = getProduct($conn, "keyboard"); ?>
+<?php if ($products == "keyboard") {
+  $result = getProduct($conn, "keyboard"); ?>
 
   <br>
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
+      <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col">
+        <div class="col-md-7">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
-            <div class="card rounded">
-              <div class="zoom">
-                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
-                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+            <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
+              <div class="row g-0 align-items-center product-row py-2">
+                <div class="col-md-4">
+                  <div class="zoom">
+                    <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+                  </div>
+                </div>
+                <div class="product-info col-md-4 px-4">
+                  <h5 class="card-title"><?php echo $row['product']; ?></h5>
+                  <h6 class="card-subtitle mb-2">£<?php echo $row['price']; ?></h6>
+                </div>
               </div>
             </div>
           </a>
@@ -101,26 +111,36 @@ function getProduct($conn, $type)
     </div>
   </div>
   <br>
-  <?php } ?>
+<?php } ?>
 
   <!-- Mouse displayed -->
 
   <?php if ($products == "mouse") {
-    $result = getProduct($conn, "mouse"); ?>
+  $result = getProduct($conn, "mouse"); ?>
 
   <br>
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
+      <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col">
+        <div class="col-md-7">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
-            <div class="card rounded">
-              <div class="zoom">
-                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
-                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+            <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
+              <div class="row g-0 align-items-center product-row py-2">
+                <div class="col-md-4">
+                  <div class="zoom">
+                    <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+                  </div>
+                </div>
+                <div class="product-info col-md-4 px-4">
+                  <h5 class="card-title"><?php echo $row['product']; ?></h5>
+                  <h6 class="card-subtitle mb-2">£<?php echo $row['price']; ?></h6>
+                </div>
               </div>
             </div>
           </a>
@@ -129,26 +149,36 @@ function getProduct($conn, $type)
     </div>
   </div>
   <br>
-  <?php } ?>
+<?php } ?>
 
 <!-- Monitors displayed -->
 
-  <?php if ($products == "monitor") {
-    $result = getProduct($conn, "monitor"); ?>
+<?php if ($products == "monitor") {
+  $result = getProduct($conn, "monitor"); ?>
 
   <br>
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
+      <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col">
+        <div class="col-md-7">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
-            <div class="card rounded">
-              <div class="zoom">
-                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
-                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+            <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
+              <div class="row g-0 align-items-center product-row py-2">
+                <div class="col-md-4">
+                  <div class="zoom">
+                    <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+                  </div>
+                </div>
+                <div class="product-info col-md-4 px-4">
+                  <h5 class="card-title"><?php echo $row['product']; ?></h5>
+                  <h6 class="card-subtitle mb-2">£<?php echo $row['price']; ?></h6>
+                </div>
               </div>
             </div>
           </a>
@@ -157,26 +187,36 @@ function getProduct($conn, $type)
     </div>
   </div>
   <br>
-  <?php } ?>
+<?php } ?>
 
 <!-- Cameras displayed -->
 
-  <?php if ($products == "camera") {
-    $result = getProduct($conn, "camera"); ?>
+<?php if ($products == "camera") {
+  $result = getProduct($conn, "camera"); ?>
 
   <br>
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
+      <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col">
+        <div class="col-md-7">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
-            <div class="card rounded">
-              <div class="zoom">
-                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
-                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+            <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
+              <div class="row g-0 align-items-center product-row py-2">
+                <div class="col-md-4">
+                  <div class="zoom">
+                    <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+                  </div>
+                </div>
+                <div class="product-info col-md-4 px-4">
+                  <h5 class="card-title"><?php echo $row['product']; ?></h5>
+                  <h6 class="card-subtitle mb-2">£<?php echo $row['price']; ?></h6>
+                </div>
               </div>
             </div>
           </a>
@@ -185,28 +225,38 @@ function getProduct($conn, $type)
     </div>
   </div>
   <br>
-  <?php } ?>
+<?php } ?>
 
 
 
 <!-- Speakers displayed -->
 
-  <?php if ($products == "speaker") {
-    $result = getProduct($conn, "speaker"); ?>
+<?php if ($products == "speaker") {
+  $result = getProduct($conn, "speaker"); ?>
 
   <br>
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
+      <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col">
+        <div class="col-md-7">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
-            <div class="card rounded">
-              <div class="zoom">
-                <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-center"><?php echo $row['product']; ?></h5>
-                <h6 class="card-subtitle mb-2 text-center">£<?php echo $row['price']; ?></h6>
+            <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
+              <div class="row g-0 align-items-center product-row py-2">
+                <div class="col-md-4">
+                  <div class="zoom">
+                    <img src="<?php echo $row['images']; ?>" alt="<?php echo $row['product']; ?>" class="card-img-top">
+                  </div>
+                </div>
+                <div class="product-info col-md-4 px-4">
+                  <h5 class="card-title"><?php echo $row['product']; ?></h5>
+                  <h6 class="card-subtitle mb-2">£<?php echo $row['price']; ?></h6>
+                </div>
               </div>
             </div>
           </a>
@@ -215,7 +265,8 @@ function getProduct($conn, $type)
     </div>
   </div>
   <br>
-  <?php } ?>
+<?php } ?>
+
   
   
     <?php include 'footer.php'; ?>

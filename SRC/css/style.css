@@ -175,6 +175,10 @@
   background-color: lightgray;
 }
 
+.card-title{
+  font-weight: bold;
+}
+
 .card-link{
   text-decoration: none;
 }
@@ -190,6 +194,35 @@
 
 .col a:hover{
   color: inherit;
+}
+
+.container .product-info{
+  align-items: center;
+  padding-left: 10px;
+}
+
+.product-card:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease-in-out;
+}
+
+.product-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zoom{
+  overflow: hidden;
+}
+
+.zoom img{
+  transition: 1s;
+}
+
+.zoom:hover img{
+  transform: scale(1.2);
 }
 
 /* Product view page */
