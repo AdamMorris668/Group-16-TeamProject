@@ -13,7 +13,9 @@ if(isset($_SESSION["user_id"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-</head>
+    <title>My Account - Login</title>
+
+  </head>
 <section id="header">
           <?php 
             if(isset($_SESSION["user_id"])) {
@@ -24,13 +26,11 @@ if(isset($_SESSION["user_id"])) {
                 $row = mysqli_fetch_assoc($result);
                 $name = $row['user_firstname'];
                
-                
-            
-                echo "<li><a href=''>Account</a></li>";
-                echo "<li><a href=\"#\">$name</a></li>";
-            echo "<li><a href=\"#\">Logout</a></li>";
+                echo "<li><a href='myAccount.php'>Account</a></li>";
+                echo "<li><a href=\"myAccount.php\">$name</a></li>";
+            echo "<li><a href=\"logout.php\">Logout</a></li>";
             } else {
-            echo "<li><a href=\"#\">Sign Up/In</a></li>";
+              echo "<li><a href=\"register.php\">Sign Up</a></li>";
             }
           ?>
 </section>
