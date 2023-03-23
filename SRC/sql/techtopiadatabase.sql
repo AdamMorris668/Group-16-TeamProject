@@ -20,7 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Database: `techtopiadatabase`
 --
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `user`
+--
 CREATE TABLE `user` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `user_firstname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -39,6 +43,7 @@ ALTER TABLE `user`
 ALTER TABLE `user`
   MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
+
 -- --------------------------------------------------------
 
 --
