@@ -1,11 +1,11 @@
 <?php
-    require '';
-    if (isset($_SESSION[""])) {
-        header("");
+    require 'config.php';
+    if (isset($_SESSION["id"])) {
+        header("index.php");
     }
 
-    if (isset($_POST[''])) {
-        require_once('');
+    if (isset($_POST['Submit'])) {
+        require_once('config.php');
 
         $email = $password = $confirm_pass = $firstname = $lastname = $address = $user_designation ='';
         
@@ -37,7 +37,6 @@
            
         }else if ($password != $confirmPassword) {
           echo  "<script> alert('Please Make Sure the Passwords Match'); </script>";} }
-
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +94,7 @@
 <p>By creating an account you agree to our <a>Terms & Conditions</a></p>
 
 <div>
-<h4> Already a user? <a class="des" href="login.html">Log in</a>  </h4>
+<h4> Already a user? <a class="des" href="login.php">Log in</a>  </h4>
 </div>
 
 <button type="submit" class="buttonregister" name="Submit" value="Register"> Register </button>

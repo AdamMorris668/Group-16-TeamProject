@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `techtopiadatabase`
 --
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+CREATE TABLE `user` (
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `user_firstname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_lastname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_designation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_orders` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
+
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY (`user_email`);
+
+ALTER TABLE `user`
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
 
 -- --------------------------------------------------------
 
