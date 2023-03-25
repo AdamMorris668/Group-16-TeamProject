@@ -171,10 +171,6 @@
 
 /* Products page cards */
 
-.card-body{
-  background-color: lightgray;
-}
-
 .card-title{
   font-weight: bold;
 }
@@ -299,4 +295,15 @@
     width: 350px;
     overflow: hidden;
   }
+}
+
+
+/* Wishlist page */
+
+.image-container .card-img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }

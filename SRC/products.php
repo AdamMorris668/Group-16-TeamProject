@@ -84,13 +84,13 @@ function getProduct($conn, $type)
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+        <button class="btn btn-primary mt-4 mb-3" onclick="history.back()">Back</button>
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
       <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
             <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
               <div class="row g-0 align-items-center product-row py-2">
@@ -122,13 +122,13 @@ function getProduct($conn, $type)
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+        <button class="btn btn-primary mt-4 mb-3" onclick="history.back()">Back</button>
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
       <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
             <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
               <div class="row g-0 align-items-center product-row py-2">
@@ -160,13 +160,13 @@ function getProduct($conn, $type)
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+        <button class="btn btn-primary mt-4 mb-3" onclick="history.back()">Back</button>
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
       <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
             <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
               <div class="row g-0 align-items-center product-row py-2">
@@ -198,13 +198,13 @@ function getProduct($conn, $type)
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+        <button class="btn btn-primary mt-4 mb-3" onclick="history.back()">Back</button>
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
       <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
             <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
               <div class="row g-0 align-items-center product-row py-2">
@@ -238,13 +238,13 @@ function getProduct($conn, $type)
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <button class="btn btn-primary mt-4 mb-3" onclick="window.location.href = 'products.php'">Back</button>
+        <button class="btn btn-primary mt-4 mb-3" onclick="history.back()">Back</button>
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-1 g-4 justify-content-center">
       <h1 class="text-center txt"><?php echo ($products); ?>s</h1>
       <?php foreach($result as $row) { ?>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">
             <div class="card shadow p-3 rounded d-flex h-100 mx-auto product-card">
               <div class="row g-0 align-items-center product-row py-2">
