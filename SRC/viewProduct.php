@@ -52,7 +52,7 @@ $product = $result[0];
           <p class="product-price">£<?php echo $product['price']; ?></p>
           <p class="product-description"><?php echo $product['product_description']; ?></p>
           <div class="mt-auto">
-            <button class="btn btn-info add-to-basket">Add to Basket</button>
+            <button class="btn btn-info add-to-basket" href="checkout.html" >Add to Basket</button>
             <button class="btn btn-info add-to-wishlist">Add to Wishlist</button>
           </div>
         </div>
@@ -97,5 +97,44 @@ $product = $result[0];
 
 
   </body>
+
+<!-- existing code for viewProduct.php -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.add-to-basket').click(function() {
+        var productId = <?php echo $product['id']; ?>;
+        var product = {
+          id: productId,
+          name: '<?php echo $product['product']; ?>',
+          price: '<?php echo $product['price']; ?>',
+          image: '<?php echo $product['images']; ?>',
+          quantity: 1
+        };
+        
+        var cart = localStorage.getItem('cart');
+        var cartArray = cart ? JSON.parse(cart) : [];
+        
+        var productIndex = cartArray.findIndex(function(item) {
+          return item.id === productId;
+        });
+        
+        if (productIndex === -1) {
+          cartArray.push(product);
+        } else {
+          cartArray[productIndex].quantity++;
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cartArray));
+        alert('Product added to basket!');
+        window.location.href = 'checkout.html';
+      });
+    });
+  </script>
+</body>
+</html>
+
+
 </html>
 

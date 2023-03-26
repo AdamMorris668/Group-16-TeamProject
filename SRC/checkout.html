@@ -181,31 +181,6 @@
         width: 150px;
         margin: 5vh 0;
     }
-    #discount_code{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        border-radius: 3px;
-        height: 70px;
-        width: 400px;
-        margin: 5vh 0;
-        
-    }
-    #discount_code input{
-        padding: 10px;
-        
-    }
-    #discount_code button{
-        padding: 10px;
-        color: white;
-        border-color: transparent;
-        background-color: black;
-        border-radius: 2px;
-    }
-    #discount_code button:hover{        
-        background-color: rgb(66, 66, 66);        
-    }
     #area_buttons{
         display: flex;
         justify-content: end;
@@ -215,6 +190,8 @@
     .checkout{
         background-color: black;
     }
+
+
   </style>
 </head>
 <body>
@@ -223,75 +200,50 @@
     <table>
       <tr>
         <th style="width:150px"></th>
-        <th>Description</th>
-        <th>Size</th>
+        <th>Image</th>
+        <th>Product name</th>
         <th>Quantity</th>
         <th>Remove</th>
         <th style="width:50px">Price</th>
-      </tr>
+      </tr><br>
 
       <tr>
-        <td>
-            <img id="image" src="../SRC/images/monitors/A1.jpg" alt="">
-        </td>
-        <td style="line-height: .2;">
-            <h3>Product</h2>
-            <h4>proct code:</h3>
-        </td>
-        <td>
-            <select name="size" id="size">
-                <option id="n1" value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
+        <!-- products image, name and price -->
 
-            </select>
-        </td>
-        <td>
-            <div class="quantity">
-                <input type="number" min="1" max="9" step="1" value="1">
-            </div>
-        </td>
-        <td> 
-            <a href="" id="remove">
-                <svg fill="currentcolor" xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
-                </svg>
-            </a>
-        </td>
-        <td style="text-align: end;">
-            <h3>£30</h3>
-        </td>
+        <ul id="cart-list"></ul>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var cart = localStorage.getItem('cart');
+            var cartArray = cart ? JSON.parse(cart) : [];
+      
+            var cartList = document.getElementById('cart-list');
+      
+            for (var i = 0; i < cartArray.length; i++) {
+              var product = cartArray[i];
+      
+              var item = document.createElement('li');
+              item.innerHTML = product.name + ' - ' + product.price + ' - ' + product.quantity;
+              cartList.appendChild(item);
+            }
+          });
+        </script>
       </tr>
 
 
 
     </table>
-    <div id="tags_area">
-        <div id="discount_code">
-            <input type="text" value="" placeholder="Enter promo code">
-            <button type="submit">Apply Discount</button>
-        </div>
-        <div class="tag">
-            <h5>Discount</h5>
-            <h3>£0</h3>
-        </div>
-        <div class="tag">
-            <h5>Delivery</h5>
-            <h3>£10</h3>
-        </div>
-        <div class="tag">
-            <h5>Subtotal</h5>
-            <h3>£40</h3>
-        </div>
-        <div class="tag">
-            <h5>Total</h5>
-            <h3>£40</h3>
-        </div>
-    </div>
+    
     <div id="area_buttons">       
-        <button class="btn">Update Quantity</button>
-        <button class="btn">Continue Shopping</button>
-        <button class="btn checkout">Checkout</button>
+        <button class="btn" onclick="location.href='products.php';">Continue Shopping</button>
+
+        <button class="btn checkout" onclick="showConfirmation()">Checkout</button>
+
+<script>
+function showConfirmation() {
+  alert("Your order has been confirmed!");
+}
+</script>
+
     </div>
   </div>
   <script
