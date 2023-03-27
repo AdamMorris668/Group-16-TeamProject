@@ -6,6 +6,7 @@ $conn = getDatabase();
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <title>TT | TechTopia products</title>
   <!-- fix in future for logo as an icon <link rel="icon" type="image/x-icon" href="/Images/Logo.ico"> -->
@@ -18,13 +19,60 @@ $conn = getDatabase();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
   <!-- This is for the rollover images, hovering over, the image changes and shows the second image-->
 </head>
   <body>
     <!-- header goes here when header is ready -->
     <?php include 'header.php'; ?>
     <div class="text-center">
-      <br>
+      
+	 
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner"  >
+			<div class="carousel-item active" style="height:500px">
+				
+				<img class="w-100"  src="images/category-menu/keyboard.jpg" alt="Keyboard">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="products.php?product=keyboard">
+						<h5>Keyboards</h5>
+					</a>
+					<p>Look at our top of the line keyboards</p>
+					
+				</div>
+				
+
+			</div>
+			<div class="carousel-item" style="height:500px">
+				<img class="w-100" src="images/category-menu/speaker.jpg" alt="Speaker">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="products.php?product=speaker">
+						<h5>Speakers</h5>
+					</a>
+					<p>Listen from the newest speakers</p>
+				</div>
+			</div>
+			<div class="carousel-item" style="height:500px">
+				<img class="w-100" src="images/category-menu/camera.jpg" alt="Camera">
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
       
     <!--This Java Script code would allow the user to see a live clock and see the exact time -->
     <script language="javascript" src="js/liveclock.js">
@@ -50,8 +98,3 @@ $conn = getDatabase();
   </body>
 </html>
     
-    
-   
-  
-  
-  
