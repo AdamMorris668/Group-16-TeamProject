@@ -1,12 +1,12 @@
 <?php
 include "connect_db.php";
-
 $conn = getDatabase();
-$stat = $conn->prepare("SELECT id, product, product_description, price, images, `type` FROM products WHERE id=?");
-$stat->bindParam(1, $_GET["id"], PDO::PARAM_INT);
-$stat->execute();
-$result = $stat->setFetchMode(PDO::FETCH_ASSOC);
-$result = $stat->fetchAll();
+
+$stmt = $conn->prepare("SELECT id, product, product_description, price, images, `type` FROM products WHERE id=?");
+$stmt->bindParam(1, $_GET["id"], PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+$result = $stmt->fetchAll();
 $product = $result[0];
 ?>
 
@@ -65,10 +65,10 @@ $product = $result[0];
           <h3>Recommended Products</h3>
           <div class="row">
             <?php
-              $stat2 = $conn->prepare("SELECT id, product, product_description, price, images, `type` FROM products WHERE `type`<> ? ORDER BY RAND() LIMIT 4");
-              $stat2->bindParam(1, $product['type'], PDO::PARAM_STR);
-              $stat2->execute();
-              $results = $stat2->fetchAll();
+              $stmt2 = $conn->prepare("SELECT id, product, product_description, price, images, `type` FROM products WHERE `type`<> ? ORDER BY RAND() LIMIT 4");
+              $stmt2->bindParam(1, $product['type'], PDO::PARAM_STR);
+              $stmt2->execute();
+              $results = $stmt2->fetchAll();
               foreach ($results as $row) { ?>
                 <div class=" col col-sm-6 col-md-4 col-lg-3 mb-3">
                   <a href="viewProduct.php?id=<?php echo $row['id']; ?>" class="card-link">

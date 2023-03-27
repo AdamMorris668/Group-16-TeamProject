@@ -1,3 +1,8 @@
+<?php
+include "connect_db.php";
+$conn = getDatabase();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

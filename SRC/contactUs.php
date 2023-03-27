@@ -1,3 +1,8 @@
+<?php
+include "connect_db.php";
+$conn = getDatabase();
+?>
+
 <!-- php for email connction stuff to be added-->
 
 <!DOCTYPE html>

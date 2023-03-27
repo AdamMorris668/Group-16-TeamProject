@@ -1,6 +1,5 @@
 <?php 
 include "connect_db.php";
-
 $conn = getDatabase();
 
 $products = "";

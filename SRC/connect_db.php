@@ -4,6 +4,8 @@ $db_user = "root";
 $db_pass = "";
 $db = "techtopiadatabase";
 
+session_start();
+
 function getDatabase()
 {
   // This connects to the Database using the hidden credentials
