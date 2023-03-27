@@ -51,13 +51,26 @@ $product = $result[0];
           <h2 class="product-name mt-5"><?php echo $product['product']; ?></h2>
           <p class="product-price">£<?php echo $product['price']; ?></p>
           <p class="product-description"><?php echo $product['product_description']; ?></p>
-          <div class="mt-auto">
-            <button class="btn btn-info add-to-basket" href="checkout.html" >Add to Basket</button>
-            <button class="btn btn-info add-to-wishlist">Add to Wishlist</button>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-warning add-to-basket" href="checkout.html" >Add to Basket <i class="fa fa-shopping-basket"></i></button>
+            <form method="post" action="viewProduct.php?id=<?php echo $product["id"]; ?>&wishlist=1"> <button type="submit" class="btn btn-danger" name="wishlist">Add to Wishlist <i class="fa fa-heart-o"></i></button></form>
           </div>
         </div>
       </div>
     </div>
+
+    <?php
+    if(isset($_GET["wishlist"])){
+      $stmt = $conn->prepare("INSERT INTO wishlist(user_id, product_id)
+      VALUES(:user_id, :product_id)");
+
+      $stmt->execute([
+        ':user_id' => $_SESSION['id'],
+        ':product_id' => $product['id'],
+      ]);
+
+    }
+    ?>
     
     <div class="container">
       <div class="row justify-content-center">

@@ -1,6 +1,26 @@
 <?php
-include "connect_db.php";
+include 'connect_db.php';
 $conn = getDatabase();
+
+// Checking if the user is logged in, otherwise take him to the login page
+if(!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit(); 
+}
+
+$id = (int)$_SESSION["id"];
+
+// Remove Product from the wishlist
+
+if (isset($_GET["remove"])) {
+    $delete = $conn->prepare("DELETE FROM wishlist WHERE id=:id");
+    $delete->execute([
+        'id' => $_GET["remove"]
+    ]);
+    
+    header('Location: wishlist.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +38,11 @@ $conn = getDatabase();
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- This is for the rollover images, hovering over, the image changes and shows the second image-->
 </head>
   <body>
     <!-- header goes here when header is ready -->
     <?php include 'header.php'; ?>
-
+    <div class="screen-container">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -34,25 +53,44 @@ $conn = getDatabase();
       
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
-                <div class="card mb-3 col-lg-12 col-md-12">
-                    <div class="row g-0">
-                        <div class="image-container col-md-4">
-                            <img src="images/monitors/A1.jpg" alt="Product Image" class="mx-auto img-fluid m-2 card-img">
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center justify-content-center mb-2">
-                            <div>
-                                <h5 class="card-title mb-1">Product Name</h5>
-                                <p class="card-text mb-0">Price: £10.00</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center justify-content-center mb-2">
-                            <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <!-- Displaying the products from the user wishlist -->
+            
+        <?php
+        $stmt = $conn->prepare("SELECT * FROM wishlist WHERE user_id=:id");
+        $stmt->execute(['id'=>$id]);
+        $wishlist = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($wishlist as $item){
+            $stmt = $conn->prepare("SELECT * FROM products WHERE id=:id");
+            $stmt->execute(['id'=>$item['product_id']]);
+            $result = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($result as $row){
+                echo "<div class=\"col-lg-8 col-md-10\">";
+                    echo "<div class=\"card shadow rounded mb-3 col-lg-12 col-md-12 product-card\">";
+                        echo "<div class=\"row g-0\">";
+                            echo "<div class=\"image-container col-md-4\">";
+                                echo "<img src=" . $row["images"] . " alt=\"Product Image\" class=\"mx-auto img-fluid m-2 card-img\">";
+                            echo "</div>";
+                            echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
+                                echo "<div>";
+                                    echo "<h5 class=\"card-title mb-1\">" . $row["product"] . "</h5>";
+                                    echo "<p class=\"card-text mb-0\">Price: £" . $row["price"] . "</p>";
+                                echo "</div>";
+                            echo "</div>";
+                            echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
+                                echo "<button type=\"button\" class=\"btn btn-warning me-2\"><i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i></button>";
+                                echo "<form method=\"post\" action=\"wishlist.php?remove=" . $item["id"] . "\"> <button type=\"submit\" class=\"btn btn-danger my-3\" name=\"remove\"><i class=\"fa fa-times\"></i></button></form>";
+                            echo "</div>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";
+             }
+        }
+        ?>
         </div>
+    </div>
     </div>
     </div>
 
