@@ -20,7 +20,7 @@ body{
   margin:0;
   padding:0;
   font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
+  background-color: #243b55; /*linear-gradient(#141e30, #243b55); */
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -31,11 +31,16 @@ body{
   font-family: sans-serif;
   background: linear-gradient(#3c5481, silver);
 }
-
+/* Themes ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
+body.light-mode {
+  color: #000;
+  background-color: silver;
+}
+/* Themes ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
 nav .navbar-nav li a{
   color: white !important;;
   }
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
+/* Zoom feature ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
 .Zoom {
   width: 500px;
   height: 300px;
@@ -54,7 +59,8 @@ nav .navbar-nav li a{
   background-size: cover;
   transition: transform 0.5s ease-out;
 }
-/* -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
+/* Zoom feature ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  */
+
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -91,6 +97,9 @@ nav .navbar-nav li a{
                 <li class="nav-item active">
                     <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/adminLogin}" href="#">Login</a>
                 </li>
+                <li class="nav-item active"> 
+                    <a class="nav_link" id="theme-toggle" href="#">Theme</a>
+                </li>
             </ul>
 
         </div>
@@ -98,14 +107,15 @@ nav .navbar-nav li a{
 </nav>
 <div class="container mt-5">
     <div class="row">
-        <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- Zoom feature ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
         <div class="Zoom" data-scale="1.6">
             <img th:src="@{${'/productImages/' + product.imageName}}"  src=""  class="dslc-lightbox-image Product_img" alt="" style="min-width: 100px; min-height: 80px;"/>
           </div>
-        <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- Zoom feature---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
         <div class="col-sm-7 mt-5">
             <h2 style="color:white" th:text="${product.name}"></h2>
             <p style="color:white" th:text="${product.category}"></p>
+            <p style="color:white">Rating out of 5: <span style="color:white" th:text="${product.rating}"></span></p>
             <h2 style="color:orange">£ <span style="color:white" th:text="${product.price}"></span></h2>
             <h5>
             <span style="color:red" th:if="${product.quantity == 0}">Out Of Stock</span>
@@ -113,6 +123,7 @@ nav .navbar-nav li a{
             <span style="color:#007bff" th:if="${product.quantity < 5} AND ${product.quantity > 0}">Low Stock</span>
            </h5>
             <p style="color:white" th:text="${product.description}"></p>
+            <!-- <p style="color:white" th:text="${product.rating}"></p> -->
             <a th:href="@{/adminShop}" style="margin: 20px 0" class="btn btn-primary">Back</a>
         </div> 
     </div>
@@ -127,7 +138,7 @@ nav .navbar-nav li a{
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Zoom feature ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <script>
 $(".Zoom")
   // tile mouse actions
@@ -153,6 +164,22 @@ $(".Zoom")
       });
   });
 </script>
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Zoom feature ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Themes ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<script>
+const themeToggle = document.querySelector('#theme-toggle');
+const body = document.querySelector('body');
+
+const themePref = localStorage.getItem('theme');
+if (themePref) {
+  body.classList.add(themePref);
+}
+
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('light-mode');
+  localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light-mode' : '');
+});
+</script>
+<!-- Themes ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 </body>
 </html>

@@ -20,7 +20,7 @@ body{
   margin:0;
   padding:0;
   font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
+  background-color: #243b55; /*linear-gradient(#141e30, #243b55);*/
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -31,7 +31,10 @@ body{
   font-family: sans-serif;
   background: linear-gradient(#3c5481, silver);
 }
-
+body.light-mode {
+  color: #000;
+  background-color: silver;
+}
 nav .navbar-nav li a{
   color: white !important;;
   }
@@ -92,5 +95,19 @@ nav .navbar-nav li a{
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+    const themeToggle = document.querySelector('#theme-toggle');
+    const body = document.querySelector('body');
+    
+    const themePref = localStorage.getItem('theme');
+    if (themePref) {
+      body.classList.add(themePref);
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light-mode' : '');
+    });
+    </script>
 </body>
 </html>
