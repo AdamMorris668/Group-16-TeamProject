@@ -1,9 +1,29 @@
 <?php
 include "connect_db.php";
 $conn = getDatabase();
-?>
 
-<!-- php for email connction stuff to be added-->
+// Checking if the user is logged in, otherwise take him to the login page
+if(!isset($_SESSION['id'])) {
+  header("Location: login.php");
+  exit(); 
+}
+
+$id = (int)$_SESSION["id"];
+
+if(isset($_POST['send'])){
+    $user_id = $_SESSION['id'];
+    $user_firstname = $_POST['name'];
+    $user_subject = $_POST['subject'];
+    $user_message = $_POST['msg'];
+    $date_submitted = date("Y-m-d");
+    
+    $stmt = $conn->prepare("INSERT INTO contactus (user_id, user_firstname, user_subject, user_message, message_date) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([$user_id, $user_firstname, $user_subject, $user_message, $date_submitted]);
+    
+    // Display success message
+    echo "Thank you for contacting us, We'll get back to you as so as possible!";
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +36,7 @@ $conn = getDatabase();
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/contactUs.css">
+<link rel="stylesheet" href="css/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   
