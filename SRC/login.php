@@ -1,7 +1,31 @@
-<?php 
-require "config.php";
-if(isset($_SESSION["user_id"])) {
-  header("Location:index.php");
+<?php
+include "connect_db.php";
+
+$conn = getDatabase();
+
+if(isset($_SESSION['id'])) {
+  session_destroy();
+  header("Refresh:0");
+}
+
+if(isset($_POST['submit'])){
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $stmt = $conn->query("SELECT * FROM user where username= '$username'");
+  $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  if($user) {
+    foreach($user as $customer) {
+      if(password_verify($password, $customer['password'])){
+        $_SESSION['user_firstname'] = $customer['user_firstname'];
+        $_SESSION['id'] = $customer['id'];
+        header("location:index.php");
+      }
+      else {
+        echo "<script>alert('The email or password provided is incorrect')</script>";
+      }
+    }
+  }
 }
 ?>
 
@@ -9,52 +33,50 @@ if(isset($_SESSION["user_id"])) {
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="formsstyle.css">
-    <?php include 'header.php'; ?>
-    <title>My Account - Login</title>
+  <title>TT | My WishList</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  </head>
-<section id="header">
-          <?php 
-            if(isset($_SESSION["user_id"])) {
-                $id = $_SESSION["user_id"];
-                //$name = $_SESSION["user_firstname"];
-                $sql = "SELECT user_firstname FROM user WHERE user_id = '$id'";
-                $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_assoc($result);
-                $name = $row['user_firstname'];
-               
-                echo "<li><a href='myAccount.php'>Account</a></li>";
-                echo "<li><a href=\"myAccount.php\">$name</a></li>";
-            echo "<li><a href=\"logout.php\">Logout</a></li>";
-            } else {
-              echo "<li><a href=\"register.php\">Sign Up</a></li>";
-            }
-          ?>
-</section>
-      
-<body>
-<div id="id01" class="modal">
-  
-  <form class="modal-content" method="post" action="index.php" >
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
+</head>
+  <body>
+    <!-- header goes here when header is ready -->
+    <?php include 'header.php'; ?>
+    
     <div class="container">
-      <label for="uname"><b>Email Address</b></label>
-      <input type="email" placeholder="Enter Email" name="email" required>
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-        
-      <button type="submit" name="Submit">Login</button>
+      <div class="card mx-auto mt-5 mb-4 w-50">
+        <div class="card-header">
+          Login
+        </div>
+        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+          <form action="login.php" method="post">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" name="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary btn-block mt-2">Login</button>
+            <div class="text-center mt-3">
+              <p>Not registered yet? <a href="register.php">Click here</a> to register</p>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    </form>
-    <div class="container" style="background-color:#f1f1f1">
-      <h4> Not Registered? <a href="register.php">Register here</a>  </h4>
-    </div>
-  
-</div>
-<?php include 'footer.php'; ?>
-<body> 
+
+
+
+
+    <?php include 'footer.php'; ?>
+    
+  </body>
+</html>
