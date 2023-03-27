@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2023 at 09:00 PM
+-- Generation Time: Mar 27, 2023 at 11:41 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -48,6 +48,34 @@ INSERT INTO `admin_login` (`id`, `email`, `username`, `password`) VALUES
 (7, 'alialomairi', '200239516@aston.ac.uk', '2626'),
 (8, 'hansraj', '220254236@aston.ac.uk', '4747'),
 (9, 'kieranfranklinbaily', '210147713@aston.ac.uk', '2002');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contactus`
+--
+
+CREATE TABLE `contactus` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_firstname` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_subject` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_message` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contactus`
+--
+
+INSERT INTO `contactus` (`id`, `user_id`, `user_firstname`, `user_subject`, `user_message`, `message_date`) VALUES
+(9, 10, 'alex', 'alex', 'alex', '2023-03-27'),
+(10, 10, 'alex', 'alex', 'alex', '2023-03-27'),
+(11, 10, 'alex', 'alex', 'alex', '2023-03-27'),
+(12, 10, 'alex', 'alex', 'alex', '2023-03-27'),
+(13, 10, 'alex', 'alex', 'alex', '2023-03-27'),
+(14, 10, 'alex', 'alex', 'alex', '2023-03-27'),
+(15, 10, 'alex', 'alex', 'alex', '2023-03-27');
 
 -- --------------------------------------------------------
 
@@ -147,6 +175,12 @@ ALTER TABLE `admin_login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contactus`
+--
+ALTER TABLE `contactus`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -173,6 +207,12 @@ ALTER TABLE `wishlist`
 --
 ALTER TABLE `admin_login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `contactus`
+--
+ALTER TABLE `contactus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `products`
