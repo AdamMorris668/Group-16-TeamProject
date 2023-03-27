@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2023 at 10:52 AM
+-- Generation Time: Mar 27, 2023 at 09:00 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,29 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `techtopiadatabase`
 --
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-CREATE TABLE `user` (
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `user_firstname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_lastname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_designation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_orders` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
-
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY (`user_email`);
-
-ALTER TABLE `user`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
 
 -- --------------------------------------------------------
 
@@ -80,44 +57,84 @@ INSERT INTO `admin_login` (`id`, `email`, `username`, `password`) VALUES
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `product` varchar(30) NOT NULL,
-  `product_description` varchar(200) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `product` varchar(30) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `product_description` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `size` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `images` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `type` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `images` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `product`, `product_description`, `quantity`, `price`, `type`, `images`) VALUES
-(1, 'LCD Monitor', '24” Black LCD Monitor with silver base.', 200, '80.00', 'monitor', '../Images/product-img/A1.jpg'),
-(2, 'LED Monitor', '30” Full Black LED Display Monitor.', 250, '100.00', 'monitor', '../Images/product-img/A2.jpg'),
-(3, 'Curved Monitor', '32” Full Black, Curved Ultrawide Display Monitor.', 1, '150.00', 'monitor', '../Images/product-img/A3.jpg'),
-(4, 'Touch Screen Monitor', '24” Full Black Matte, Smooth touch screen monitor.', 50, '180.00', 'monitor', '../Images/product-img/A4.jpg'),
-(5, 'Large Wall Monitor', '84” Full Black, Edge LED, large screen display.', 250, '220.00', 'monitor', '../Images/product-img/A5.jpg'),
-(6, 'Wired Keyboard ', 'Simple matte black wired desktop keyboard.', 200, '40.00', 'keyboard', '../Images/product-img/B1.jpg'),
-(7, 'Wireless Keyboard ', 'Slim full white wireless desktop keyboard.', 250, '50.00', 'keyboard', '../Images/product-img/B2.jpg'),
-(8, 'Gaming Keyboard ', 'Black wireless mechanical gaming keyboard, with RGB lighting.', 1, '70.00', 'keyboard', '../Images/product-img/B3.jpg'),
-(9, 'Laser Sensor Keyboard ', 'Portable and rechargeable laser sensor keyboard.', 50, '120.00', 'keyboard', '../Images/product-img/B4.jpg'),
-(10, 'Numeric keypad', 'Wired, black metallic, 34 Keys number pad numeric keypad.', 250, '30.00', 'keyboard', '../Images/product-img/B5.jpg'),
-(11, 'Wired Mouse ', 'Wired, black matte sensor smooth desktop mouse.', 200, '20.00', 'mouse', '../Images/product-img/C1.jpg'),
-(12, 'Wireless Mouse  ', 'Wireless, rechargeable black matte sensor smooth desktop mouse.', 250, '30.00', 'mouse', '../Images/product-img/C2.jpg'),
-(13, 'Wireless Gaming Mouse  ', 'Wireless, rechargeable black gaming mouse.', 1, '40.00', 'mouse', '../Images/product-img/C3.jpg'),
-(14, 'Wireless vertical Mouse ', 'Wireless, black vertical mouse.', 50, '35.00', 'mouse', '../Images/product-img/C4.jpg'),
-(15, 'Wireless Magic Mouse ', 'Wireless, slim, white smooth touch magic mouse.', 250, '70.00', 'mouse', '../Images/product-img/C5.jpg'),
-(16, 'Camera DSLR  ', 'Black, Professional digital DSLR camera.', 200, '350.00', 'camera', '../Images/product-img/D1.jpg'),
-(17, 'Compact Camera    ', 'Black, pocket compact camera 42 mega pixel. ', 250, '120.00', 'camera', '../Images/product-img/D2.jpg'),
-(18, 'Camera 360  ', 'Black, portable 360° angle camera.', 1, '300.00', 'camera', '../Images/product-img/D3.jpg'),
-(19, 'Web Camera  ', 'Black, wide angle desktop web camera..', 50, '50.00', 'camera', '../Images/product-img/D4.jpg'),
-(20, 'Photo Print Camera ', 'White, portable photo print camera. .', 250, '250.00', 'camera', '../Images/product-img/D5.jpg'),
-(21, 'Portable Bluetooth Speaker ', 'White/Black, metallic, rechargeable, portable Bluetooth speaker.', 200, '70.00', 'speaker', '../Images/product-img/E1.jpg'),
-(22, 'Woofer Speaker   ', 'Black, standing woofer with four-sided voice system.', 250, '120.00', 'speaker', '../Images/product-img/E2.jpg'),
-(23, 'Bar speaker  ', 'Black, Metallic framed bar speaker.', 1, '80.00', 'speaker', '../Images/product-img/E3.jpg'),
-(24, 'Portable Mini Ball Bluetooth S', 'White, Fabricated body, rechargeable, portable Mini Bluetooth speaker.', 50, '70.00', 'speaker', '../Images/product-img/E4.jpg'),
-(25, 'Wired PC speakers ', 'Black, matte wired PC/desktop speakers.', 250, '40.00', 'speaker', '../Images/product-img/E5.jpg');
+INSERT INTO `products` (`id`, `product`, `product_description`, `size`, `price`, `type`, `images`) VALUES
+(1, 'LCD Monitor', '24” Black LCD Monitor with silver base.', 200, '80.00', 'monitor', 'images/monitors/A1.jpg'),
+(2, 'LED Monitor', '30” Full Black LED Display Monitor.', 250, '100.00', 'monitor', 'images/monitors/A2.jpg'),
+(3, 'Curved Monitor', '32” Full Black, Curved Ultrawide Display Monitor.', 1, '150.00', 'monitor', 'images/monitors/A3.jpg'),
+(4, 'Touch Screen Monitor', '24” Full Black Matte, Smooth touch screen monitor.', 50, '180.00', 'monitor', 'images/monitors/A4.jpg'),
+(5, 'Large Wall Monitor', '84” Full Black, Edge LED, large screen display.', 250, '220.00', 'monitor', 'images/monitors/A5.jpg'),
+(6, 'Wired Keyboard ', 'Simple matte black wired desktop keyboard.', 200, '40.00', 'keyboard', 'images/keyboards/B1.jpg'),
+(7, 'Wireless Keyboard ', 'Slim full white wireless desktop keyboard.', 250, '50.00', 'keyboard', 'images/keyboards/B2.jpg'),
+(8, 'Gaming Keyboard ', 'Black wireless mechanical gaming keyboard, with RGB lighting.', 1, '70.00', 'keyboard', 'images/keyboards/B3.jpg'),
+(9, 'Laser Sensor Keyboard ', 'Portable and rechargeable laser sensor keyboard.', 50, '120.00', 'keyboard', 'images/keyboards/B4.jpg'),
+(10, 'Numeric keypad', 'Wired, black metallic, 34 Keys number pad numeric keypad.', 250, '30.00', 'keyboard', 'images/keyboards/B5.jpg'),
+(11, 'Wired Mouse ', 'Wired, black matte sensor smooth desktop mouse.', 200, '20.00', 'mouse', 'images/mouse/C1.jpg'),
+(12, 'Wireless Mouse  ', 'Wireless, rechargeable black matte sensor smooth desktop mouse.', 250, '30.00', 'mouse', 'images/mouse/C2.jpg'),
+(13, 'Wireless Gaming Mouse  ', 'Wireless, rechargeable black gaming mouse.', 1, '40.00', 'mouse', 'images/mouse/C3.jpg'),
+(14, 'Wireless vertical Mouse ', 'Wireless, black vertical mouse.', 50, '35.00', 'mouse', 'images/mouse/C4.jpg'),
+(15, 'Wireless Magic Mouse ', 'Wireless, slim, white smooth touch magic mouse.', 250, '70.00', 'mouse', 'images/mouse/C5.jpg'),
+(16, 'Camera DSLR  ', 'Black, Professional digital DSLR camera.', 200, '350.00', 'camera', 'images/cameras/D1.jpg'),
+(17, 'Compact Camera    ', 'Black, pocket compact camera 42 mega pixel. ', 250, '120.00', 'camera', 'images/cameras/D2.jpg'),
+(18, 'Camera 360  ', 'Black, portable 360° angle camera.', 1, '300.00', 'camera', 'images/cameras/D3.jpg'),
+(19, 'Web Camera  ', 'Black, wide angle desktop web camera..', 50, '50.00', 'camera', 'images/cameras/D4.jpg'),
+(20, 'Photo Print Camera ', 'White, portable photo print camera. .', 250, '250.00', 'camera', 'images/cameras/D5.jpg'),
+(21, 'Portable Bluetooth Speaker ', 'White/Black, metallic, rechargeable, portable Bluetooth speaker.', 200, '70.00', 'speaker', 'images/speakers/E1.jpg'),
+(22, 'Woofer Speaker   ', 'Black, standing woofer with four-sided voice system.', 250, '120.00', 'speaker', 'images/speakers/E2.jpg'),
+(23, 'Bar speaker  ', 'Black, Metallic framed bar speaker.', 1, '80.00', 'speaker', 'images/speakers/E3.jpg'),
+(24, 'Portable Mini Ball Bluetooth S', 'White, Fabricated body, rechargeable, portable Mini Bluetooth speaker.', 50, '70.00', 'speaker', 'images/speakers/E4.jpg'),
+(25, 'Wired PC speakers ', 'Black, matte wired PC/desktop speakers.', 250, '40.00', 'speaker', 'images/speakers/E5.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_firstname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_lastname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `join_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `user_firstname`, `user_lastname`, `user_address`, `join_date`) VALUES
+(1, 'jawraj', 'jawraj@gmail.com', '$2y$10$rzAs/6IUjRYH/TZXyJYsf.kj251JRZadMba1TAbGXYP2Xpql5Zeja', 'Jawraj', 'Singh', '21 GT road', '2023-03-26'),
+(2, 'mark', 'mark@gmail.com', '$2y$10$rAWfe9kF/DXssgzcqkHe0Of.tftCW3XOQ.gzFJoz.9wisyCmwiLpG', 'Mark', 'Mark', '21 GT road', '2023-03-26'),
+(6, 'stefano', 'stefano@gmail.com', '$2y$10$HJwWNTI.cVjtHk00uOhFY.jSrT21krROGjM9Y8u5eXTxJ33LgDGny', 'stefano', 'stefano', '24 stefano', '2023-03-26'),
+(9, 'alex', 'alex@gmail.com', '$2y$10$5CDZM0IbZVkuF5NLWrHu.e7DZhL0lL2Vq/An0yhf9WnJkJiFRfL2u', 'alex', 'alex', '21 alex', '2023-03-27'),
+(10, 'alex', 'alex@gmail.com', '$2y$10$pQlN0Rz45ltkgQZULV5rHeX/xN5GK8woNTHC6CXtyBDtCiaDr5TvC', 'alex', 'alex', '1 alex', '2023-03-27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Indexes for dumped tables
@@ -136,6 +153,18 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -150,6 +179,18 @@ ALTER TABLE `admin_login`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
