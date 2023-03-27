@@ -1,4 +1,3 @@
-
 <header>
   <!-- Navbar class used to locat the navbar in the landing page -->
   <nav class="navbar navbar-expand-lg">
@@ -18,8 +17,17 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="checkout.html"><i class="fa fa-shopping-basket"></i></a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'wishlist' ? ' active' : '' ?>"><a class="nav-link" href="wishlist.php?page=wishlist"><i class="fa fa-heart"></i></a></li>
-          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'account' ? ' active' : '' ?>"><a class="nav-link" href="login.php?page=account"><i class="fa fa-regular fa-user-circle"></i> My Account</a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'account' ? ' active' : '' ?>">
+            <?php if (isset($_SESSION['id'])) { 
+            $user_firstname = ucfirst($_SESSION['user_firstname']);  
+            ?>
+              <a class="nav-link" href="login.php"><i class="fa fa-user-circle"></i><?php echo " " . $user_firstname . " (Logout)" ?></a>
+            <?php } else { ?>
+              <a class="nav-link" href="login.php"><i class="fa fa-user-circle"></i> Log In</a>
+            <?php } ?>
+          </li>
         </ul>
+
       </div>
       <!-- form used to enter search queries -->
       <!--
