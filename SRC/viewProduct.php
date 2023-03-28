@@ -53,24 +53,31 @@ $product = $result[0];
           <p class="product-description"><?php echo $product['product_description']; ?></p>
           <div class="d-flex justify-content-end">
             <button class="btn btn-warning add-to-basket" href="checkout.html" >Add to Basket <i class="fa fa-shopping-basket"></i></button>
-            <form method="post" action="viewProduct.php?id=<?php echo $product["id"]; ?>&wishlist=1"> 
             <?php 
-              // check if the product is already in the wishlist
+            if(isset($_SESSION['id'])) {
               $stmt = $conn->prepare("SELECT * FROM wishlist WHERE user_id=:user_id AND product_id=:product_id");
-              $stmt->execute([
-                ':user_id' => $_SESSION['id'],
-                ':product_id' => $product['id'],
-              ]);
-              $result = $stmt->fetchAll();
-
-              // change the button's text or icon depending on whether the product is in the wishlist or not
-              if (count($result) > 0) {
-                echo '<button type="submit" class="btn btn-danger" name="wishlist" disabled>Already in Wishlist <i class="fa fa-heart"></i></button>';
+              $stmt->execute(['user_id' => $_SESSION['id'], 'product_id' => $product['id']]);
+              $productInWishlist = $stmt->fetch(PDO::FETCH_ASSOC);
+              if($productInWishlist) {
+                echo '<button type="button" class="btn btn-danger" name="wishlist" disabled>Product Already in Wishlist <i class="fa fa-heart"></i></button>';
               } else {
-                echo '<button type="submit" class="btn btn-danger" name="wishlist">Add to Wishlist <i class="fa fa-heart-o"></i></button>';
+                echo '<button type="button" class="btn btn-danger" name="wishlist" onclick="addToWishlist()">Add to Wishlist <i class="fa fa-heart-o"></i></button>';
               }
+            } else {
+              echo '<button type="button" class="btn btn-danger" name="wishlist" onclick="addToWishlist()">Add to Wishlist <i class="fa fa-heart-o"></i></button>';
+            }
             ?>
-          </form>
+            <script>
+            function addToWishlist() {
+                if (!<?php echo isset($_SESSION['id']) ? 'true' : 'false' ?>) {
+                    alert("Please login to add this product to your wishlist.");
+                } else {
+                    window.location.href = "viewProduct.php?id=<?php echo $product['id']; ?>&wishlist=1";
+                    window.location.reload(true);
+                }
+            }
+            </script>
+
           </div>
         </div>
       </div>
@@ -78,28 +85,13 @@ $product = $result[0];
 
     <?php
     if(isset($_GET["wishlist"])){
-      $stmt = $conn->prepare("SELECT * FROM wishlist WHERE user_id=:user_id AND product_id=:product_id");
-      $stmt->execute([
-        ':user_id' => $_SESSION['id'],
-        ':product_id' => $product['id'],
-      ]);
-      $result = $stmt->fetchAll();
-
-    if (count($result) > 0) {
-      // product is already in wishlist
-      echo '<script>alert("This product is already in your wishlist!")</script>';
-    } else {
-      // product is not in wishlist, so add it
       $stmt = $conn->prepare("INSERT INTO wishlist(user_id, product_id)
-        VALUES(:user_id, :product_id)");
+      VALUES(:user_id, :product_id)");
 
       $stmt->execute([
         ':user_id' => $_SESSION['id'],
         ':product_id' => $product['id'],
       ]);
-
-      echo '<script>alert("Product added to wishlist!")</script>';
-      }
     }
     ?>
     
