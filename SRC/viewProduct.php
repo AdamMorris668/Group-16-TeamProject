@@ -73,7 +73,6 @@ $product = $result[0];
                     alert("Please login to add this product to your wishlist.");
                 } else {
                     window.location.href = "viewProduct.php?id=<?php echo $product['id']; ?>&wishlist=1";
-                    window.location.reload(true);
                 }
             }
             </script>
@@ -84,14 +83,31 @@ $product = $result[0];
     </div>
 
     <?php
-    if(isset($_GET["wishlist"])){
-      $stmt = $conn->prepare("INSERT INTO wishlist(user_id, product_id)
-      VALUES(:user_id, :product_id)");
-
-      $stmt->execute([
-        ':user_id' => $_SESSION['id'],
-        ':product_id' => $product['id'],
-      ]);
+    if (isset($_GET['wishlist']) && isset($_SESSION['id'])) {
+      if(isset($_GET["wishlist"])){
+        $stmt = $conn->prepare("SELECT * FROM wishlist WHERE user_id=:user_id AND product_id=:product_id");
+        $stmt->execute([
+          ':user_id' => $_SESSION['id'],
+          ':product_id' => $product['id'],
+        ]);
+        $result = $stmt->fetchAll();
+  
+      if (count($result) > 0) {
+        // product is already in wishlist
+        echo '<script>alert("This product is already in your wishlist!")</script>';
+      } else {
+        // product is not in wishlist, so add it
+        $stmt = $conn->prepare("INSERT INTO wishlist(user_id, product_id)
+          VALUES(:user_id, :product_id)");
+  
+        $stmt->execute([
+          ':user_id' => $_SESSION['id'],
+          ':product_id' => $product['id'],
+        ]);
+  
+        echo '<script>alert("Product added to wishlist!")</script>';
+        }
+      }
     }
     ?>
     
