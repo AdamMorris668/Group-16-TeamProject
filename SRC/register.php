@@ -129,7 +129,7 @@ if (isset($_POST["user_firstname"]) && isset($_POST["user_lastname"]) && isset($
               <label for="password">Retype Password</label>
               <input type="password" class="form-control" name="retypepassword" placeholder="Retype Password" required>
             </div>
-            <button type="submit" name="submit" value="Register" class="btn btn-primary btn-block mt-2">Login</button>
+            <button type="submit" name="submit" value="Register" class="btn btn-success btn-block mt-2">Register</button>
             <div class="text-center mt-3">
               <p>Already registered? <a href="login.php">Click here</a> to Login</p>
             </div>

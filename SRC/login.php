@@ -48,27 +48,29 @@ if(isset($_POST['submit'])){
   <body>
     <!-- header goes here when header is ready -->
     <?php include 'header.php'; ?>
-    
-    <div class="container">
-      <div class="card mx-auto mt-5 mb-4 w-50">
-        <div class="card-header">
-          Login
-        </div>
-        <div class="card-body d-flex flex-column align-items-center justify-content-center">
-          <form action="login.php" method="post">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" name="username" placeholder="Enter username">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" placeholder="Password">
-            </div>
-            <button type="submit" name="submit" class="btn btn-primary btn-block mt-2">Login</button>
-            <div class="text-center mt-3">
-              <p>Not registered yet? <a href="register.php">Click here</a> to register</p>
-            </div>
-          </form>
+
+    <div class="screen-container">
+      <div class="container">
+        <div class="card mx-auto mt-5 mb-4 w-50">
+          <div class="card-header">
+            Login
+          </div>
+          <div class="card-body d-flex flex-column align-items-center justify-content-center">
+            <form action="login.php" method="post">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" placeholder="Enter username">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+              </div>
+              <button type="submit" name="submit" class="btn btn-success btn-block mt-2">Login</button>
+              <div class="text-center mt-3">
+                <p>Not registered yet? <a href="register.php">Click here</a> to register</p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

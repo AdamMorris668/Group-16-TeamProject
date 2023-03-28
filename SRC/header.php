@@ -15,7 +15,7 @@
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'about' ? ' active' : '' ?>"><a class="nav-link" href="aboutUs.php?page=about">About Us</a></li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="checkout.html"><i class="fa fa-shopping-basket"></i></a></li>
+          <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="checkout.php?page=checkout"><i class="fa fa-shopping-basket"></i></a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'wishlist' ? ' active' : '' ?>"><a class="nav-link" href="wishlist.php?page=wishlist"><i class="fa fa-heart"></i></a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'account' ? ' active' : '' ?>">
             <?php if (isset($_SESSION['id'])) { 

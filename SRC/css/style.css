@@ -25,6 +25,10 @@
   color: #fff;
 }
 
+.screen-container{
+  min-height: 62vh;
+}
+
 /* About Us page */
 .review1,
 .review2,
