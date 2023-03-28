@@ -213,20 +213,82 @@
 
         <ul id="cart-list"></ul>
         <script>
+
           document.addEventListener('DOMContentLoaded', function() {
             var cart = localStorage.getItem('cart');
             var cartArray = cart ? JSON.parse(cart) : [];
-      
             var cartList = document.getElementById('cart-list');
-      
+
+            function removeProduct(product) {
+              var index = cartArray.indexOf(product);
+              if (index !== -1) {
+                cartArray.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cartArray));
+              }
+            }
+
+            function updateProductQuantity(product, newQuantity) {
+              product.quantity = newQuantity;
+              localStorage.setItem('cart', JSON.stringify(cartArray));
+            }
+
             for (var i = 0; i < cartArray.length; i++) {
               var product = cartArray[i];
-      
-              var item = document.createElement('li');
-              item.innerHTML = product.name + ' - ' + product.price + ' - ' + product.quantity;
-              cartList.appendChild(item);
+
+              var row = document.createElement('tr');
+              
+              // add product image
+              var imageCell = document.createElement('td');
+              var image = document.createElement('img');
+              image.src = product.image;
+              image.alt = product.name;
+              imageCell.appendChild(image);
+              row.appendChild(imageCell);
+              
+              // add product name
+              var nameCell = document.createElement('td');
+              nameCell.textContent = product.name;
+              row.appendChild(nameCell);
+              
+              // add product price
+              var priceCell = document.createElement('td');
+              priceCell.textContent = product.price;
+              row.appendChild(priceCell);
+              
+              // add product quantity
+              var quantityCell = document.createElement('td');
+              var quantity = document.createElement('input');
+              quantity.type = 'number';
+              quantity.min = 1;
+              quantity.value = product.quantity;
+              quantity.addEventListener('change', function(event) {
+                var input = event.target;
+                var newQuantity = parseInt(input.value);
+                if (newQuantity <= 0) {
+                  removeProduct(product);
+                  row.remove();
+                } else {
+                  updateProductQuantity(product, newQuantity);
+                }
+              });
+              quantityCell.appendChild(quantity);
+              row.appendChild(quantityCell);
+              
+              // add remove button
+              var removeCell = document.createElement('td');
+              var removeButton = document.createElement('button');
+              removeButton.textContent = 'Remove';
+              removeButton.addEventListener('click', function() {
+                removeProduct(product);
+                row.remove();
+              });
+              removeCell.appendChild(removeButton);
+              row.appendChild(removeCell);
+
+              cartList.appendChild(row);
             }
           });
+
         </script>
       </tr>
 
@@ -237,53 +299,20 @@
     <div id="area_buttons">       
         <button class="btn" onclick="location.href='products.php';">Continue Shopping</button>
 
-        <button class="btn checkout" onclick="showConfirmation()">Checkout</button>
+        <button class="btn checkout" onclick="showConfirmation()" href="index.php" >Checkout</button>
 
-<script>
-function showConfirmation() {
-  alert("Your order has been confirmed!");
-}
-</script>
+        <script>
+
+        function showConfirmation() {
+          alert("Your order has been confirmed!");
+          window.location.href = 'index.php';
+        }
+
+        </script>
 
     </div>
   </div>
   <script
   src="https://code.jquery.com/jquery-3.6.3.js"
-  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-  crossorigin="anonymous"></script>
-  <script>
-    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-    jQuery('.quantity').each(function() {
-      var spinner = jQuery(this),
-        input = spinner.find('input[type="number"]'),
-        btnUp = spinner.find('.quantity-up'),
-        btnDown = spinner.find('.quantity-down'),
-        min = input.attr('min'),
-        max = input.attr('max');
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QB
 
-      btnUp.click(function() {
-        var oldValue = parseFloat(input.val());
-        if (oldValue >= max) {
-          var newVal = oldValue;
-        } else {
-          var newVal = oldValue + 1;
-        }
-        spinner.find("input").val(newVal);
-        spinner.find("input").trigger("change");
-      });
-
-      btnDown.click(function() {
-        var oldValue = parseFloat(input.val());
-        if (oldValue <= min) {
-          var newVal = oldValue;
-        } else {
-          var newVal = oldValue - 1;
-        }
-        spinner.find("input").val(newVal);
-        spinner.find("input").trigger("change");
-      });
-
-    });
-</script>
-</body>
-</html>
