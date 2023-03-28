@@ -67,24 +67,26 @@ if (isset($_GET["remove"])) {
             $result = $stmt-> fetchAll(PDO::FETCH_ASSOC);
 
             foreach($result as $row){
-                echo "<div class=\"col-lg-8 col-md-10\">";
-                    echo "<div class=\"card shadow rounded mb-3 col-lg-12 col-md-12 product-card\">";
-                        echo "<div class=\"row g-0\">";
-                            echo "<div class=\"image-container col-md-4\">";
-                                echo "<img src=" . $row["images"] . " alt=\"Product Image\" class=\"mx-auto img-fluid m-2 card-img\">";
-                            echo "</div>";
-                            echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
-                                echo "<div>";
-                                    echo "<h5 class=\"card-title mb-1\">" . $row["product"] . "</h5>";
-                                    echo "<p class=\"card-text mb-0\">Price: £" . $row["price"] . "</p>";
+                echo "<div class=\"col-lg-8 col-md-10 mx-auto\">";
+                    echo "<a href=\"viewProduct.php?id=" . $row['id'] . "\" class=\"card-link\">";
+                        echo "<div class=\"card shadow rounded mb-3 col-lg-12 col-md-12 product-card\">";
+                            echo "<div class=\"row g-0\">";
+                                echo "<div class=\"image-container col-md-4\">";
+                                    echo "<img src=" . $row["images"] . " alt=\"Product Image\" class=\"mx-auto img-fluid m-2 card-img\">";
+                                echo "</div>";
+                                echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
+                                    echo "<div>";
+                                        echo "<h5 class=\"card-title mb-1\">" . $row["product"] . "</h5>";
+                                        echo "<p class=\"card-text mb-0\">Price: £" . $row["price"] . "</p>";
+                                    echo "</div>";
+                                echo "</div>";
+                                echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
+                                    echo "<button type=\"button\" class=\"btn btn-warning me-2\"><i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i></button>";
+                                    echo "<form method=\"post\" action=\"wishlist.php?remove=" . $item["id"] . "\"> <button type=\"submit\" class=\"btn btn-danger my-3\" name=\"remove\"><i class=\"fa fa-times\"></i></button></form>";
                                 echo "</div>";
                             echo "</div>";
-                            echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
-                                echo "<button type=\"button\" class=\"btn btn-warning me-2\"><i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i></button>";
-                                echo "<form method=\"post\" action=\"wishlist.php?remove=" . $item["id"] . "\"> <button type=\"submit\" class=\"btn btn-danger my-3\" name=\"remove\"><i class=\"fa fa-times\"></i></button></form>";
-                            echo "</div>";
                         echo "</div>";
-                    echo "</div>";
+                    echo "</a>";
                 echo "</div>";
              }
         }
