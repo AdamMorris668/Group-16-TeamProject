@@ -11,6 +11,8 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
 
     List<Product> findByCategory(String category);
 
+    List<Product> findByRating(Integer rating);
+
     @Query("SELECT p from  Product p where p.name like :xyz ")
     List<Product> searchProducts(@Param("xyz") String keywords);
 

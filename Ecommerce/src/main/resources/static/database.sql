@@ -42,7 +42,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `quantity`, `price`, `category`, `image_name`, `rating`) VALUES
-(1, 'LCD Monitor', '24” Black LCD Monitor with silver base.', 200, '80.00', 'monitor', '../productImages/A1.jpg', '0'),
+(1, 'LCD Monitor', '24” Black LCD Monitor with silver base.', 200, '80.00', 'monitor', '../productImages/A1.jpg', '1'),
 (2, 'LED Monitor', '30” Full Black LED Display Monitor.', 250, '100.00', 'monitor', '../productImages/A2.jpg', '3'),
 (3, 'Curved Monitor', '32” Full Black, Curved Ultrawide Display Monitor.', 1, '150.00', 'monitor', '../productImages/A3.jpg', '4'),
 (4, 'Touch Screen Monitor', '24” Full Black Matte, Smooth touch screen monitor.', 50, '180.00', 'monitor', '../productImages/A4.jpg', '5'),

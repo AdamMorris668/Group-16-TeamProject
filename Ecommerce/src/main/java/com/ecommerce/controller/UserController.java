@@ -2,6 +2,9 @@ package com.ecommerce.controller;
 
 import com.ecommerce.entity.*;
 import com.ecommerce.entity.enums.Category;
+// -----------------------------------------------------
+import com.ecommerce.entity.enums.Rating;
+// -----------------------------------------------------
 import com.ecommerce.repository.OrderItemRepo;
 import com.ecommerce.repository.ProductRepo;
 import com.ecommerce.repository.UserRepository;
@@ -21,6 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -132,26 +136,44 @@ public class UserController {
         return "viewProduct";
     }
 
-    @GetMapping("/admin/home/{id}")
-    public String adminHome(Model m, @PathVariable("id") Integer id) {
-        Map<Integer, String> map = new HashMap<>();
-        map.put(1, Category.MONITOR.name());
-        map.put(2, Category.KEYBOARD.name());
-        map.put(3, Category.MOUSE.name());
-        map.put(4, Category.CAMERA.name());
-        map.put(5, Category.SPEAKER.name());
 
-        m.addAttribute("categories", map);
-        if (id == 0)
-            m.addAttribute("products", productRepo.findAll());
-        else {
-            String category = map.get(id);
-            m.addAttribute("products", productRepo.findByCategory(category));
-        }
+@GetMapping("/admin/home/{id}")
+public String adminHome(Model m, @PathVariable("id") Integer id) {
+    Map<Integer, String> map = new HashMap<>();
+    map.put(1, Category.MONITOR.name());
+    map.put(2, Category.KEYBOARD.name());
+    map.put(3, Category.MOUSE.name());
+    map.put(4, Category.CAMERA.name());
+    map.put(5, Category.SPEAKER.name());
 
-        return "products";
+    Map<Integer, String> RMap = new HashMap<>();
+    RMap.put(6, Rating.ONE.name());
+    RMap.put(7, Rating.TWO.name());
+    RMap.put(8, Rating.THREE.name());
+    RMap.put(9, Rating.FOUR.name());
+    RMap.put(10, Rating.FIVE.name());
+
+    m.addAttribute("categories", map);
+    m.addAttribute("ratings", RMap);
+
+    if (id == 0) {
+        m.addAttribute("products", productRepo.findAll());
+    } else if (id >= 1 && id <= 5) {
+        String category = map.get(id);
+        m.addAttribute("products", productRepo.findByCategory(category));
+    } else if (id >= 6 && id <= 10) {
+        String rating = RMap.get(id);
+        m.addAttribute("products", productRepo.findByRating(Rating.valueOf(rating).getRating()));
+    } else {
+  
     }
 
+    return "products";
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------
+ 
     @GetMapping("/admin/products/add")
     public String productsAddGet(Model m) {
         Map<Integer, String> map = new HashMap<>();

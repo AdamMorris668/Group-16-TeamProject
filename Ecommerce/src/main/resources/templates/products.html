@@ -86,9 +86,21 @@ body.light-mode {
                     <li class="list-group-item" th:text="${category.value}"></li>
                 </a>
             </ul>
+ <!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+            <h4 style="color:white">Ratings</h4>
+            <ul class="list-group">
+                <!-- <a style="color:#007bff" th:href="@{/}"><li class="list-group-item">ALL PRODUCTS</li></a> -->
+                <a  style="color:#007bff" href=""  th:each="rating, iStat : ${ratings}" th:href="@{/admin/home/{id}(id=${rating.key})}">
+                    <li class="list-group-item" th:text="${rating.value}"></li>
+                </a>
+ <!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->               
+            </ul>
         </div>
         <div class="col-sm-9">
     <a th:href="@{/admin/products/add}" style="margin: 20px 0" class="btn btn-primary">Add Product</a>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------- -->
     <table class="table">
         <thead class="thead-light">
         <tr>

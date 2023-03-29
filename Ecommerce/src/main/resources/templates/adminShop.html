@@ -88,13 +88,14 @@ nav .navbar-nav li a{
                 <a  style="color:#007bff" href="" th:each="category, iStat : ${categories}" th:href="@{/adminShop/category/{id}(id=${category.key})}">
                     <li class="list-group-item" th:text="${category.value}"></li>
                 </a>
-            </ul>
+
+             </ul>
             <ul class="list-group" sec:authorize="isAnonymous()">
                 <a style="color:#007bff"  th:href="@{/adminShop}"><li class="list-group-item">ALL PRODUCTS</li></a>
                 <a  style="color:#007bff" href="" th:each="category, iStat : ${categories}" th:href="@{/adminShop/normal/category/{id}(id=${category.key})}">
                     <li class="list-group-item" th:text="${category.value}"></li>
                 </a>
-            </ul>
+            </ul> 
         </div>
         <div class="col-sm-9">
             <div class="card" style="margin-top: 20px" th:each="product : ${products}">
