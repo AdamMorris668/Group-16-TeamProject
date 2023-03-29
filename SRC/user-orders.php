@@ -10,24 +10,13 @@ if(!isset($_SESSION['id'])) {
 
 $id = (int)$_SESSION["id"];
 
-// Remove Product from the wishlist
-
-if (isset($_GET["remove"])) {
-    $delete = $conn->prepare("DELETE FROM wishlist WHERE id=:id");
-    $delete->execute([
-        'id' => $_GET["remove"]
-    ]);
-    
-    header('Location: wishlist.php');
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>TT | My WishList</title>
+  <title>TT | My Order History</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,7 +38,7 @@ if (isset($_GET["remove"])) {
                     <button class="btn btn-primary mt-4 mb-3" onclick="history.back()">Back</button>
                 </div>
             </div>
-            <h1 class="text-center txt">My Wishlist</h1>
+            <h1 class="text-center txt">My Order History</h1>
             
             <div class="container">
                 <div class="row justify-content-center">
@@ -57,16 +46,29 @@ if (isset($_GET["remove"])) {
                 <!-- Displaying the products from the user wishlist -->
                     
                 <?php
-                $stmt = $conn->prepare("SELECT * FROM wishlist WHERE user_id=:id");
+                $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=:id");
                 $stmt->execute(['id'=>$id]);
-                $wishlist = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
-                foreach($wishlist as $item){
+                foreach($orders as $item){
                     $stmt = $conn->prepare("SELECT * FROM products WHERE id=:id");
                     $stmt->execute(['id'=>$item['product_id']]);
                     $result = $stmt-> fetchAll(PDO::FETCH_ASSOC);
 
                     foreach($result as $row){
+
+                        // Determine order status and set font color
+                        $status = $item['order_status'];
+                        if ($status == 'cancelled') {
+                            $fontColor = 'red';
+                        } else if ($status == 'processing') {
+                            $fontColor = '#FFD700';
+                        } else if ($status == 'delivered') {
+                            $fontColor = 'green';
+                        } else {
+                            $fontColor = 'black';
+                        }
+
                         echo "<div class=\"col-lg-8 col-md-10 mx-auto\">";
                             echo "<a href=\"viewProduct.php?id=" . $row['id'] . "\" class=\"card-link\">";
                                 echo "<div class=\"card shadow rounded mb-3 col-lg-12 col-md-12 product-card\">";
@@ -81,8 +83,7 @@ if (isset($_GET["remove"])) {
                                             echo "</div>";
                                         echo "</div>";
                                         echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
-                                            echo "<button type=\"button\" class=\"btn btn-success me-2\"><i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i></button>";
-                                            echo "<form method=\"post\" action=\"wishlist.php?remove=" . $item["id"] . "\"> <button type=\"submit\" class=\"btn btn-danger my-3\" name=\"remove\"><i class=\"fa fa-times\"></i></button></form>";
+                                            echo "<p style=\"color: " . $fontColor . "; font-weight: bold;\">" . ucfirst($status) . "</p>";
                                         echo "</div>";
                                     echo "</div>";
                                 echo "</div>";

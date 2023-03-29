@@ -24,7 +24,7 @@ if (isset($_GET["remove"])) {
 
 if (isset($_POST["checkout"])) {
     // Insert the products from the basket into the orders table
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, product_id, product_status) SELECT user_id, product_id, 'processing' FROM basket WHERE user_id=:id");
+    $stmt = $conn->prepare("INSERT INTO orders (user_id, product_id, order_status) SELECT user_id, product_id, 'processing' FROM basket WHERE user_id=:id");
     $stmt->execute(['id'=>$id]);
     
     // Delete the products from the basket
@@ -74,9 +74,9 @@ if (isset($_POST["checkout"])) {
                 $totalPrice = 0;
                 $stmt = $conn->prepare("SELECT * FROM basket WHERE user_id=:id");
                 $stmt->execute(['id'=>$id]);
-                $wishlist = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $basket = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
-                foreach($wishlist as $item){
+                foreach($basket as $item){
                     $stmt = $conn->prepare("SELECT * FROM products WHERE id=:id");
                     $stmt->execute(['id'=>$item['product_id']]);
                     $result = $stmt-> fetchAll(PDO::FETCH_ASSOC);
@@ -106,18 +106,18 @@ if (isset($_POST["checkout"])) {
                     }
                 }
                 ?>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-lg-8 col-md-10 mx-auto d-flex justify-content-end">
+                <div class="total-price mb-3">
+                    <h4 class="card-title mb-3">Total Price: £<?php echo $totalPrice; ?></h4>
+                    <form method="post" action="checkout.php">
+                        <button type="submit" class="btn btn-success" name="checkout">Checkout</button>
+                    </form>
                 </div>
             </div>
-            <div class="row justify-content-end">
-                <div class="col-lg-8 col-md-10 mx-auto d-flex justify-content-end">
-                    <div class="total-price mb-3">
-                        <h4 class="card-title mb-3">Total Price: £<?php echo $totalPrice; ?></h4>
-                        <form method="post" action="checkout.php">
-                            <button type="submit" class="btn btn-success" name="checkout">Checkout</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        </div>
     </div>
 
 
