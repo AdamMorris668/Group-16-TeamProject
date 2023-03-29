@@ -124,7 +124,7 @@ $conn = getDatabase();
 			<h5 class="card-title">How to reach us</h5>
 			<h6 class="card-subtitle mb-2 text-muted">Contact Us</h6>
 			<p class="card-text">You can contact us at anytime via email or phone. Or vist us at anytime at our location. We strive to help our customers and will welcome anyone 24/7</p>
-			<a href="aboutUs.php?page=contact" class="card-link" style="color:blue;">For more click here</a>
+			<a href="contactUs.php?page=contact" class="card-link" style="color:blue;">For more click here</a>
 			
 		</div>
 	</div>
