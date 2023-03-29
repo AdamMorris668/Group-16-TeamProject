@@ -15,6 +15,7 @@
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'about' ? ' active' : '' ?>"><a class="nav-link" href="aboutUs.php?page=about">About Us</a></li>
         </ul>
         <ul class="navbar-nav ms-auto">
+        <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="user-orders.php?page=orders"><i class="fa fa-history"></i></a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="checkout.php?page=checkout"><i class="fa fa-shopping-basket"></i></a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'wishlist' ? ' active' : '' ?>"><a class="nav-link" href="wishlist.php?page=wishlist"><i class="fa fa-heart"></i></a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'account' ? ' active' : '' ?>">
@@ -30,14 +31,14 @@
 
       </div>
       <!-- form used to enter search queries -->
-      <!--
-      <form class="navbar-form navbar-right" action="/productSearch.php">
+      
+      <!-- <form class="navbar-form navbar-right" action="/productSearch.php">
         <div class="form-group">
           <input type="text" name="search" class="form-control" placeholder="Search" />
           <input type="submit" class="btn btn-primary" value="Search" />
         </div>
-      </form>
-      -->
+      </form> -->
+     
     </div>
   </nav>
 </header>

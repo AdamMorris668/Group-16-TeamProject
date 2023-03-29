@@ -10,7 +10,7 @@ if(!isset($_SESSION['id'])) {
 
 $id = (int)$_SESSION["id"];
 
-// Remove Product from the wishlist
+// Remove Product from the basket
 
 if (isset($_GET["remove"])) {
     $delete = $conn->prepare("DELETE FROM basket WHERE id=:id");
@@ -68,7 +68,7 @@ if (isset($_POST["checkout"])) {
             <div class="container">
                 <div class="row justify-content-center">
 
-                <!-- Displaying the products from the user wishlist -->
+                <!-- Displaying the products from the user basket -->
                     
                 <?php
                 $totalPrice = 0;

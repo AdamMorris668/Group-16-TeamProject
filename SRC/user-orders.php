@@ -43,7 +43,7 @@ $id = (int)$_SESSION["id"];
             <div class="container">
                 <div class="row justify-content-center">
 
-                <!-- Displaying the products from the user wishlist -->
+                <!-- Displaying the products from the user basket -->
                     
                 <?php
                 $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=:id");
