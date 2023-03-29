@@ -14,6 +14,10 @@
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'contact' ? ' active' : '' ?>"><a class="nav-link" href="contactUs.php?page=contact">Contact Us</a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'about' ? ' active' : '' ?>"><a class="nav-link" href="aboutUs.php?page=about">About Us</a></li>
         </ul>
+        <form action="search_results.php" method="GET" class="d-flex my-2 my-lg-0 mx-auto">
+          <input type="text" name="q" class="form-control me-2" placeholder="Search products...">
+          <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+        </form>
         <ul class="navbar-nav ms-auto">
         <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="user-orders.php?page=orders"><i class="fa fa-history"></i></a></li>
           <li class="nav-item<?= isset($_GET['page']) && $_GET['page'] == 'basket' ? ' active' : '' ?>"><a class="nav-link " href="checkout.php?page=checkout"><i class="fa fa-shopping-basket"></i></a></li>
