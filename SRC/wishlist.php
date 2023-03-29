@@ -81,7 +81,6 @@ if (isset($_GET["remove"])) {
                                             echo "</div>";
                                         echo "</div>";
                                         echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
-                                            echo "<button type=\"button\" class=\"btn btn-success me-2\"><i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i></button>";
                                             echo "<form method=\"post\" action=\"wishlist.php?remove=" . $item["id"] . "\"> <button type=\"submit\" class=\"btn btn-danger my-3\" name=\"remove\"><i class=\"fa fa-times\"></i></button></form>";
                                         echo "</div>";
                                     echo "</div>";
