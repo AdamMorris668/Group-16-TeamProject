@@ -2,7 +2,7 @@
 include "connect_db.php";
 $conn = getDatabase();
 
-$stmt = $conn->prepare("SELECT id, product, product_description, price, images, `type` FROM products WHERE id=?");
+$stmt = $conn->prepare("SELECT id, product, product_description, price, images, size, `type` FROM products WHERE id=?");
 $stmt->bindParam(1, $_GET["id"], PDO::PARAM_INT);
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -51,16 +51,23 @@ $product = $result[0];
             <h2 class="product-name mt-5"><?php echo $product['product']; ?></h2>
             <p class="product-price">£<?php echo $product['price']; ?></p>
             <p class="product-description"><?php echo $product['product_description']; ?></p>
+            <p class="product-description">Stock: <?php echo $product['size']; ?></p>
             <div class="d-flex justify-content-end">
               <?php 
-              if(isset($_SESSION['id'])) {
+              if (isset($_SESSION['id'])) {
                 $stmt = $conn->prepare("SELECT * FROM basket WHERE user_id=:user_id AND product_id=:product_id");
                 $stmt->execute(['user_id' => $_SESSION['id'], 'product_id' => $product['id']]);
                 $productInBasket = $stmt->fetch(PDO::FETCH_ASSOC);
-                if($productInBasket) {
-                    echo '<button type="button" class="btn btn-success" name="basket" onclick="addToBasket()">Add to Basket <i class="fa fa-shopping-cart"></i></button>';
+
+                // Check if the product is out of stock
+                if ($product['size'] == 0) {
+                    echo '<button type="button" class="btn btn-success" name="basket" disabled>Out of Stock</button>';
                 } else {
-                    echo '<button type="button" class="btn btn-success" name="basket" onclick="addToBasket()">Add to Basket <i class="fa fa-shopping-cart"></i></button>';
+                    if ($productInBasket) {
+                        echo '<button type="button" class="btn btn-success" name="basket" onclick="addToBasket()">Add to Basket <i class="fa fa-shopping-cart"></i></button>';
+                    } else {
+                        echo '<button type="button" class="btn btn-success" name="basket" onclick="addToBasket()">Add to Basket <i class="fa fa-shopping-cart"></i></button>';
+                    }
                 }
               } else {
                 echo '<button type="button" class="btn btn-success" name="basket" onclick="addToBasket()">Add to Basket <i class="fa fa-shopping-cart"></i></button>';
@@ -106,14 +113,36 @@ $product = $result[0];
 
       <?php
       if (isset($_GET['basket']) && isset($_SESSION['id'])) {
-        $stmt = $conn->prepare("INSERT INTO basket(user_id, product_id) VALUES(:user_id, :product_id)");
+        $product_id = $product['id'];
+        $user_id = $_SESSION['id'];
+
+        $stmt = $conn->prepare("SELECT * FROM basket WHERE user_id = :user_id AND product_id = :product_id");
         $stmt->execute([
-            ':user_id' => $_SESSION['id'],
-            ':product_id' => $product['id']
+            ':user_id' => $user_id,
+            ':product_id' => $product_id
         ]);
 
+        $result = $stmt->fetch();
+
+        if ($result) {
+            $quantity = $result['quantity'] + 1;
+            $stmt = $conn->prepare("UPDATE basket SET quantity = :quantity WHERE user_id = :user_id AND product_id = :product_id");
+            $stmt->execute([
+                ':quantity' => $quantity,
+                ':user_id' => $user_id,
+                ':product_id' => $product_id
+            ]);
+        } else {
+            $stmt = $conn->prepare("INSERT INTO basket(user_id, product_id, quantity) VALUES(:user_id, :product_id, :quantity)");
+            $stmt->execute([
+                ':user_id' => $user_id,
+                ':product_id' => $product_id,
+                ':quantity' => 1
+            ]);
+        }
+
         echo '<script>alert("Product added to basket!")</script>';
-      } 
+      }
 
       if (isset($_GET['wishlist']) && isset($_SESSION['id'])) {
         if(isset($_GET["wishlist"])){

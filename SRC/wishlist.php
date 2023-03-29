@@ -43,7 +43,7 @@ if (isset($_GET["remove"])) {
     <!-- header goes here when header is ready -->
     <?php include 'header.php'; ?>
     <div class="screen-container">
-        <div class="container">
+        <div class="container min">
             <div class="row">
                 <div class="col-lg-12">
                     <button class="btn btn-primary mt-4 mb-3" onclick="history.back()">Back</button>
@@ -61,32 +61,44 @@ if (isset($_GET["remove"])) {
                 $stmt->execute(['id'=>$id]);
                 $wishlist = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
-                foreach($wishlist as $item){
-                    $stmt = $conn->prepare("SELECT * FROM products WHERE id=:id");
-                    $stmt->execute(['id'=>$item['product_id']]);
-                    $result = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+                // Check if wishlist is empty
+                if (empty($wishlist)) {
+                    echo "<div class=\"row justify-content-center\">";
+                        echo "<div class=\"col-lg-12 text-center mb-3\">";
+                            echo "<h3>Your wishlist is empty!</h3>";
+                        echo "</div>";
+                    echo "</div>";
+                } else {
 
-                    foreach($result as $row){
-                        echo "<div class=\"col-lg-8 col-md-10 mx-auto\">";
-                            echo "<a href=\"viewProduct.php?id=" . $row['id'] . "\" class=\"card-link\">";
-                                echo "<div class=\"card shadow rounded mb-3 col-lg-12 col-md-12 product-card\">";
-                                    echo "<div class=\"row g-0\">";
-                                        echo "<div class=\"image-container col-md-4\">";
-                                            echo "<img src=" . $row["images"] . " alt=\"Product Image\" class=\"mx-auto img-fluid m-2 card-img\">";
-                                        echo "</div>";
-                                        echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
-                                            echo "<div>";
-                                                echo "<h5 class=\"card-title mb-1\">" . $row["product"] . "</h5>";
-                                                echo "<p class=\"card-text mb-0\">Price: £" . $row["price"] . "</p>";
+                //Else show the products in the wishlist
+
+                    foreach($wishlist as $item){
+                        $stmt = $conn->prepare("SELECT * FROM products WHERE id=:id");
+                        $stmt->execute(['id'=>$item['product_id']]);
+                        $result = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach($result as $row){
+                            echo "<div class=\"col-lg-8 col-md-10 mx-auto\">";
+                                echo "<a href=\"viewProduct.php?id=" . $row['id'] . "\" class=\"card-link\">";
+                                    echo "<div class=\"card shadow rounded mb-3 col-lg-12 col-md-12 product-card\">";
+                                        echo "<div class=\"row g-0\">";
+                                            echo "<div class=\"image-container col-md-4\">";
+                                                echo "<img src=" . $row["images"] . " alt=\"Product Image\" class=\"mx-auto img-fluid m-2 card-img\">";
+                                            echo "</div>";
+                                            echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
+                                                echo "<div>";
+                                                    echo "<h5 class=\"card-title mb-1\">" . $row["product"] . "</h5>";
+                                                    echo "<p class=\"card-text mb-0\">Price: £" . $row["price"] . "</p>";
+                                                echo "</div>";
+                                            echo "</div>";
+                                            echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
+                                                echo "<form method=\"post\" action=\"wishlist.php?remove=" . $item["id"] . "\"> <button type=\"submit\" class=\"btn btn-danger my-3\" name=\"remove\"><i class=\"fa fa-times\"></i></button></form>";
                                             echo "</div>";
                                         echo "</div>";
-                                        echo "<div class=\"col-md-4 d-flex align-items-center justify-content-center mb-2\">";
-                                            echo "<form method=\"post\" action=\"wishlist.php?remove=" . $item["id"] . "\"> <button type=\"submit\" class=\"btn btn-danger my-3\" name=\"remove\"><i class=\"fa fa-times\"></i></button></form>";
-                                        echo "</div>";
                                     echo "</div>";
-                                echo "</div>";
-                            echo "</a>";
-                        echo "</div>";
+                                echo "</a>";
+                            echo "</div>";
+                        }
                     }
                 }
                 ?>
