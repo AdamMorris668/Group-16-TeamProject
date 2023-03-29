@@ -128,6 +128,15 @@ $conn = getDatabase();
 			
 		</div>
 	</div>
+	    
+	 <br>
+	<div>
+		<video style="width:100%;height:auto" autoplay muted loop>
+			<source src="video/1054452272-preview_wiHVw9BE.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+	</div>
+	    
     <!--This Java Script code would allow the user to see a live clock and see the exact time -->
     <script language="javascript" src="js/liveclock.js">
       /*
@@ -137,7 +146,7 @@ $conn = getDatabase();
     visit http://www.dynamicdrive.com
     */
     </script>
-      <br>
+      
     </div>
     
     <!-- first bit of content for related page goes here-->
@@ -145,8 +154,7 @@ $conn = getDatabase();
       
     </div>
     
-    <br>
-    <br>
+    
     <?php include 'footer.php'; ?>
     
   </body>
