@@ -106,6 +106,37 @@ $conn = getDatabase();
 		</a>
 	</div>
       
+	    
+	   <br>
+	
+	<div class="card border border-dark" style="width: 35rem; margin: auto; padding: 10px;">
+		<div class="card-body">
+			<h5 class="card-title">TechTopia</h5>
+			<h6 class="card-subtitle mb-2 text-muted">About Us</h6>
+			<p class="card-text">We created the brand Techtopia to try and stand out from the competition and also appeal to our target audience which is technology enthusiasts by going with a futuristic look to our website and only selling the highest quality equipment.We specializes in the sale of technological equipment which focuses in the sale of keyboards, computer mice, microphones, monitors and cameras. </p>
+			<a href="aboutUs.php?page=about" class="card-link" style="color:blue;">For more click here</a>
+			
+		</div>
+	</div>
+	<br>
+	<div class="card border border-dark" style="width: 35rem; margin: auto; padding: 10px;">
+		<div class="card-body">
+			<h5 class="card-title">How to reach us</h5>
+			<h6 class="card-subtitle mb-2 text-muted">Contact Us</h6>
+			<p class="card-text">You can contact us at anytime via email or phone. Or vist us at anytime at our location. We strive to help our customers and will welcome anyone 24/7</p>
+			<a href="aboutUs.php?page=contact" class="card-link" style="color:blue;">For more click here</a>
+			
+		</div>
+	</div>
+	    
+	 <br>
+	<div>
+		<video style="width:100%;height:auto" autoplay muted loop>
+			<source src="video/1054452272-preview_wiHVw9BE.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+	</div>
+	    
     <!--This Java Script code would allow the user to see a live clock and see the exact time -->
     <script language="javascript" src="js/liveclock.js">
       /*
@@ -115,7 +146,7 @@ $conn = getDatabase();
     visit http://www.dynamicdrive.com
     */
     </script>
-      <br>
+      
     </div>
     
     <!-- first bit of content for related page goes here-->
@@ -123,8 +154,7 @@ $conn = getDatabase();
       
     </div>
     
-    <br>
-    <br>
+    
     <?php include 'footer.php'; ?>
     
   </body>
