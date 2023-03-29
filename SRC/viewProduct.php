@@ -41,7 +41,7 @@ $product = $result[0];
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div id="image-zoom">
-            <img class="img-fluid img" src="<?php echo $product['images']; ?>" alt="Product-Image">
+            <img class="img-fluid product-zoom img" src="<?php echo $product['images']; ?>" alt="Product-Image">
             </div>
           </div>
 
@@ -207,7 +207,25 @@ $product = $result[0];
     <?php include 'footer.php'; ?>
 
     <!-- Zoom in JS script -->
-    <script src="javascript/main.js"></script>
+    <script>
+    const magnifier = document.getElementById("image-zoom");
+    const img = document.querySelector(".product-zoom");
+
+    magnifier.addEventListener("mousemove", (e) => {
+      const x = e.clientX - e.target.offsetLeft;
+      const y = e.clientY - e.target.offsetTop;
+
+      console.log(x,y);
+
+      img.style.transformOrigin = `${x}px ${y}px`;
+      img.style.transform = "scale(2)"
+    });
+
+    magnifier.addEventListener("mouseleave", () => {
+      img.style.transformOrigin = "center";
+      img.style.transform = "scale(1)";
+    });
+  </script>
 
 
   </body>
