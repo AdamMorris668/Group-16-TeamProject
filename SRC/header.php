@@ -2,7 +2,7 @@
   <!-- Navbar class used to locat the navbar in the landing page -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php">Logo</a>
+      <a class="navbar-brand" href="index.php"><img style="height:75px;"  src="images/logo/logo.png" alt="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bar fa fa-bars"></i>
       </button>
