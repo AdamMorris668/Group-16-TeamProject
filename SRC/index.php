@@ -32,10 +32,12 @@ $conn = getDatabase();
       
 	 
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		<ol class="carousel-indicators">
+			<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
 		</ol>
 		<div class="carousel-inner"  >
 			<div class="carousel-item active" style="height:500px">
@@ -61,8 +63,38 @@ $conn = getDatabase();
 				</div>
 			</div>
 			<div class="carousel-item" style="height:500px">
-				<img class="w-100" src="images/category-menu/camera.jpg" alt="Camera">
+				<img class="w-100" src="images\carousel-item\screen.jpg" alt="Monitor">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="products.php?product=monitor">
+						<h5>Monitors</h5>
+					</a>
+					<p>View the most advanced monitors</p>
+				</div>
 			</div>
+			
+			<div class="carousel-item" style="height:500px">
+				<img class="w-100" src="images/carousel-item/camera.jpg" alt="Camera">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="products.php?product=camera">
+						<h5>Cameras</h5>
+					</a>
+					<p>Experience the highest quality cameras</p>
+				</div>
+			</div>
+			
+			<div class="carousel-item" style="height:500px">
+				<img class="w-100" src="images/carousel-item/mouse.jpg" alt="Mouse">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="products.php?product=mouse">
+						<h5>Mouse</h5>
+					</a>
+					<p>Watch our most comfortable mice</p>
+				</div>
+			</div>
+			
+			
+			
+			
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
