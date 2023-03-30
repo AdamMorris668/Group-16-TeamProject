@@ -109,25 +109,33 @@ $conn = getDatabase();
 	    
 	   <br>
 	
-	<div class="card border border-dark" style="width: 35rem; margin: auto; padding: 10px;">
-		<div class="card-body">
-			<h5 class="card-title">TechTopia</h5>
-			<h6 class="card-subtitle mb-2 text-muted">About Us</h6>
-			<p class="card-text">We created the brand Techtopia to try and stand out from the competition and also appeal to our target audience which is technology enthusiasts by going with a futuristic look to our website and only selling the highest quality equipment.We specializes in the sale of technological equipment which focuses in the sale of keyboards, computer mice, microphones, monitors and cameras. </p>
-			<a href="aboutUs.php?page=about" class="card-link" style="color:blue;">For more click here</a>
-			
-		</div>
-	</div>
-	<br>
-	<div class="card border border-dark" style="width: 35rem; margin: auto; padding: 10px;">
-		<div class="card-body">
-			<h5 class="card-title">How to reach us</h5>
-			<h6 class="card-subtitle mb-2 text-muted">Contact Us</h6>
-			<p class="card-text">You can contact us at anytime via email or phone. Or vist us at anytime at our location. We strive to help our customers and will welcome anyone 24/7</p>
-			<a href="contactUs.php?page=contact" class="card-link" style="color:blue;">For more click here</a>
-			
-		</div>
-	</div>
+	   <div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+				<div class="card border border-dark mb-3">
+					<div class="card-body">
+					<h5 class="card-title">TechTopia</h5>
+					<h6 class="card-subtitle mb-2 text-muted">About Us</h6>
+					<p class="card-text">We created the brand Techtopia to try and stand out from the competition and also appeal to our target audience which is technology enthusiasts by going with a futuristic look to our website and only selling the highest quality equipment. We specialize in the sale of technological equipment which focuses on the sale of keyboards, computer mice, microphones, monitors, and cameras.</p>
+					<a href="aboutUs.php?page=about" class="card-link" style="color:blue;">For more click here</a>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+				<div class="card border border-dark mb-3">
+					<div class="card-body">
+					<h5 class="card-title">How to reach us</h5>
+					<h6 class="card-subtitle mb-2 text-muted">Contact Us</h6>
+					<p class="card-text">You can contact us at any time via email or phone. Or visit us at any time at our location. We strive to help our customers and will welcome anyone 24/7.</p>
+					<a href="contactUs.php?page=contact" class="card-link" style="color:blue;">For more click here</a>
+					</div>
+				</div>
+				</div>
+			</div>
+			</div>
+
 	    
 	 <br>
 	<div>
