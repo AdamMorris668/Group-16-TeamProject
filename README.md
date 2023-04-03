@@ -8,3 +8,7 @@ We created the brand Techtopia to try and stand out from the competition and als
 
 
 TechTopia is a e-commerce site that sells technology from computers, phones and accessories. It is created during CS2TP term 2 module by group number 16
+
+http://210160435.cs2410-web01pvm.aston.ac.uk/
+
+The link above is to run the website since we managed to successfully host it online.
