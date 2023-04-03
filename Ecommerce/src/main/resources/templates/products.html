@@ -64,7 +64,7 @@ body.light-mode {
                     <a class="nav-link" th:href="@{/logout}" href="#">Logout</a>
                 </li>
                 <li class="nav-item active"> 
-                    <a class="nav_link" id="theme-toggle" href="#">Theme</a>
+                    <a class="nav_link" id="change-theme" href="#">Theme</a>
                 </li>
             </ul>
         </div>
@@ -144,12 +144,12 @@ body.light-mode {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 <script>
-const themeToggle = document.querySelector('#theme-toggle');
+const themeToggle = document.querySelector('#change-theme');
 const body = document.querySelector('body');
 
-const themePref = localStorage.getItem('theme');
-if (themePref) {
-  body.classList.add(themePref);
+const Themes = localStorage.getItem('theme');
+if (Themes) {
+  body.classList.add(Themes);
 }
 
 themeToggle.addEventListener('click', () => {
